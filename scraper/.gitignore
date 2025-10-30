@@ -1,0 +1,14 @@
+# 依赖
+node_modules/
+package-lock.json
+
+# 数据文件
+data/*.json
+output/*
+
+# 日志
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db

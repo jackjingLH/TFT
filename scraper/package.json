@@ -1,0 +1,23 @@
+{
+  "name": "tft-academy-scraper",
+  "version": "1.0.0",
+  "description": "TFT Academy 阵容数据抓取工具",
+  "type": "module",
+  "main": "fetchComps.js",
+  "scripts": {
+    "fetch": "node fetchComps.js",
+    "test": "node fetchComps.js"
+  },
+  "keywords": [
+    "tft",
+    "scraper",
+    "crawler"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cheerio": "^1.1.2",
+    "puppeteer": "^24.26.1"
+  }
+}

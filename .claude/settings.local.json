@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd /c \"cd /d D:\\game\\code\\convertTFT\\translation && move TFT_Guide_Translation_Rules.md docs && move TFT_items_translate.js docs\")",
+      "Bash(cmd /c \"cd /d D:\\game\\code\\convertTFT\\translation && move TFT_Update_Translation_Rules.md archive && cd scraper && move fetchComps.js ..\\archive\")",
+      "Bash(cmd /c \"cd /d D:\\game\\code\\convertTFT\\translation && move *.txt original\")",
+      "Bash(cmd /c \"cd /d D:\\game\\code\\convertTFT\\translation && rd /s /q output && del flow.md\")",
+      "Bash(cmd /c \"cd /d D:\\game\\code\\convertTFT\\translation && dir /b\")",
+      "Read(//d/**)",
+      "Bash(cd:*)",
+      "Bash(if not exist original mkdir original)",
+      "Bash(if not exist docs mkdir docs)",
+      "Bash(if not exist archive mkdir archive)",
+      "Bash(cmd /c dir \"D:\\game\\code\\convertTFT\\translation\")",
+      "Bash(cmd /c \"cd /d D:\\game\\code\\convertTFT\\translation\\scraper && node fetchTftAcademyGuide.js https://tftacademy.com/tierlist/comps/set-15-d-d-d-duelists\")",
+      "Bash(cmd /c \"cd /d D:\\game\\code\\convertTFT\\translation\\scraper && node fetchTftAcademyGuide.js \"\"https://tftacademy.com/tierlist/comps/set-15-d-d-d-duelists\"\"\")",
+      "Bash(cmd /c:*)",
+      "Bash(timeout:*)",
+      "Bash(D:gamecodeconvertTFTtranslationimagesrun_workflow.bat)",
+      "WebFetch(domain:tftips.app)",
+      "Bash(node run_tftips.js:*)",
+      "Bash(del run_tftips.js)",
+      "Bash(node -e \"const fs = require(''fs''); fs.unlinkSync(''D:/game/code/convertTFT/translation/scraper/run_tftips.js''); console.log(''文件已删除'')\")",
+      "Bash(dir:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
