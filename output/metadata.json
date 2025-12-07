@@ -1,36 +1,50 @@
 {
-  "mdFile": "D:\\game\\code\\convertTFT\\translation\\TFT.md",
-  "outputDir": "D:\\game\\code\\convertTFT\\translation\\output",
-  "fullImage": "D:\\game\\code\\convertTFT\\translation\\output\\TFT_full.png",
+  "mdFile": "D:\\code\\TFT\\TFT.md",
+  "outputDir": "D:\\code\\TFT\\output",
+  "fullImage": "D:\\code\\TFT\\output\\TFT_full.png",
   "splitImages": [
     {
-      "path": "D:\\game\\code\\convertTFT\\translation\\output\\TFT_part1_of_4.png",
-      "filename": "TFT_part1_of_4.png",
-      "width": 1080,
-      "height": 1440,
-      "sizeKB": 697.9
+      "path": "D:\\code\\TFT\\output\\TFT_part1_of_6.png",
+      "filename": "TFT_part1_of_6.png",
+      "width": 900,
+      "height": 1200,
+      "sizeKB": 822.7
     },
     {
-      "path": "D:\\game\\code\\convertTFT\\translation\\output\\TFT_part2_of_4.png",
-      "filename": "TFT_part2_of_4.png",
-      "width": 1080,
-      "height": 1440,
-      "sizeKB": 304.6
+      "path": "D:\\code\\TFT\\output\\TFT_part2_of_6.png",
+      "filename": "TFT_part2_of_6.png",
+      "width": 900,
+      "height": 1200,
+      "sizeKB": 101.3
     },
     {
-      "path": "D:\\game\\code\\convertTFT\\translation\\output\\TFT_part3_of_4.png",
-      "filename": "TFT_part3_of_4.png",
-      "width": 1080,
-      "height": 1440,
-      "sizeKB": 196.1
+      "path": "D:\\code\\TFT\\output\\TFT_part3_of_6.png",
+      "filename": "TFT_part3_of_6.png",
+      "width": 900,
+      "height": 1200,
+      "sizeKB": 99.7
     },
     {
-      "path": "D:\\game\\code\\convertTFT\\translation\\output\\TFT_part4_of_4.png",
-      "filename": "TFT_part4_of_4.png",
-      "width": 1080,
-      "height": 1440,
-      "sizeKB": 141.2
+      "path": "D:\\code\\TFT\\output\\TFT_part4_of_6.png",
+      "filename": "TFT_part4_of_6.png",
+      "width": 900,
+      "height": 1200,
+      "sizeKB": 100.5
+    },
+    {
+      "path": "D:\\code\\TFT\\output\\TFT_part5_of_6.png",
+      "filename": "TFT_part5_of_6.png",
+      "width": 900,
+      "height": 1200,
+      "sizeKB": 87.8
+    },
+    {
+      "path": "D:\\code\\TFT\\output\\TFT_part6_of_6.png",
+      "filename": "TFT_part6_of_6.png",
+      "width": 900,
+      "height": 1200,
+      "sizeKB": 9.8
     }
   ],
-  "timestamp": "2025-10-29T16:55:05.040Z"
+  "timestamp": "2025-12-07T17:09:49.132Z"
 }

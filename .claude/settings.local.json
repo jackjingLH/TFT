@@ -21,7 +21,19 @@
       "Bash(node run_tftips.js:*)",
       "Bash(del run_tftips.js)",
       "Bash(node -e \"const fs = require(''fs''); fs.unlinkSync(''D:/game/code/convertTFT/translation/scraper/run_tftips.js''); console.log(''文件已删除'')\")",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(npm install:*)",
+      "Bash(node images/workflow.js:*)",
+      "Bash(findstr:*)",
+      "Bash(node -e:*)",
+      "WebFetch(domain:tftacademy.com)",
+      "Bash(cat:*)",
+      "Bash(if not exist data mkdir data)",
+      "Bash(node:*)",
+      "Bash(git clone:*)",
+      "Bash(git config:*)",
+      "WebFetch(domain:www.datatft.com)",
+      "WebFetch(domain:www.metatft.com)"
     ],
     "deny": [],
     "ask": []

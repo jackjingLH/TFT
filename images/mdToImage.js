@@ -11,7 +11,7 @@ const __dirname = dirname(__filename);
 // 配置项
 const CONFIG = {
   // 图片尺寸
-  width: 1080,           // 宽度（像素）
+  width: 900,            // 宽度（像素）
   // height: 自动根据内容调整
 
   // 背景颜色 - VSCode 深色主题
@@ -27,8 +27,8 @@ const CONFIG = {
 
   // 字体配置 - 移动端超大字体优化
   fontFamily: 'Microsoft YaHei, Arial, sans-serif',  // 微软雅黑
-  fontSize: '32px',      // 超大字体，移动端非常清晰（原 28px）
-  lineHeight: '2.1',     // 超大行距（原 2.0）
+  fontSize: '32px',      // 超大字体，移动端非常清晰
+  lineHeight: '2.1',     // 超大行距（保持不变）
 
   // 内边距 - 移动端优化
   padding: '0px',        // 去掉body内边距，让标题区域可以满宽
@@ -54,7 +54,7 @@ function generateCSS(h1BackgroundImagePath = '') {
   /* 一级标题容器 - 用于包裹副标题和主标题 */
   .h1-container {
     margin: 0;
-    padding: 110px 40px 110px 40px;  /* 上下边距：110px */
+    padding: 92px 33px 92px 33px;  /* 上下边距：92px（原110px），左右：33px（原40px）*/
 
     /* 使用图片作为背景（如果配置了的话）*/
     ${h1BackgroundImagePath ? `
@@ -75,62 +75,62 @@ function generateCSS(h1BackgroundImagePath = '') {
 
   /* 赛季副标题 - 一级标题上方的小字 */
   .season-subtitle {
-    font-size: 36px;     /* 小字体 */
+    font-size: 32px;     /* 与正文相同大小 */
     font-weight: 400;    /* 正常粗细 */
     color: rgba(255, 255, 255, 0.7);  /* 半透明白色 */
-    margin: 0 0 20px 0;  /* 下方留20px间距 */
-    letter-spacing: 4px; /* 字间距 */
+    margin: 0 0 13px 0;  /* 下方留13px间距 */
+    letter-spacing: 2px; /* 字间距 */
     text-align: left;    /* 左对齐 */
   }
 
   /* 一级标题 - 封面级别设计（带背景图） */
   h1 {
-    font-size: 130px;    /* 更大的标题字体 */
+    font-size: 108px;    /* 大标题字体 */
     font-weight: 900;    /* 特粗体 */
     margin: 0;
     padding: 0;          /* 移除内边距，由容器控制 */
     color: #ffffff;      /* 纯白色，更醒目 */
     text-align: left;    /* 左对齐 */
-    letter-spacing: 6px; /* 超大字间距 */
-    line-height: 1.3;    /* 缩小行间距 */
+    letter-spacing: 5px; /* 字间距 */
+    line-height: 1.3;    /* 行间距 */
     background: none;    /* 移除背景，由容器控制 */
   }
 
   /* 二级标题 - 内容区域 */
   h2 {
-    font-size: 44px;     /* 超大二级标题（原 38px）*/
+    font-size: 37px;     /* 超大二级标题（原44px → 37px）*/
     font-weight: bold;
-    margin: 28px 0 16px 0;
-    padding: 0 40px;     /* 左右内边距 */
+    margin: 23px 0 13px 0;  /* 原28px 0 16px 0 → 23px 0 13px 0 */
+    padding: 0 33px;     /* 左右内边距（原40px → 33px）*/
     color: #4ec9b0;
   }
 
   /* 三级标题 */
   h3 {
-    font-size: 36px;     /* 大三级标题（原 32px）*/
+    font-size: 30px;     /* 大三级标题（原36px → 30px）*/
     font-weight: bold;
-    margin: 24px 0 14px 0;
-    padding: 0 40px;
+    margin: 20px 0 12px 0;  /* 原24px 0 14px 0 → 20px 0 12px 0 */
+    padding: 0 33px;     /* 原40px → 33px */
     color: #4ec9b0;
   }
 
   /* 段落 - 添加左右内边距 */
   p {
-    margin: 16px 0;
-    padding: 0 40px;
+    margin: 13px 0;      /* 原16px 0 → 13px 0 */
+    padding: 0 33px;     /* 原40px → 33px */
     color: #d4d4d4;
   }
 
   /* 列表 - 添加左右内边距 */
   ul, ol {
-    margin: 16px 0;
-    padding-left: 75px;  /* 左侧缩进 + 内容区域内边距 */
-    padding-right: 40px;
+    margin: 13px 0;      /* 原16px 0 → 13px 0 */
+    padding-left: 63px;  /* 左侧缩进 + 内容区域内边距（原75px → 63px）*/
+    padding-right: 33px; /* 原40px → 33px */
     color: #d4d4d4;
   }
 
   li {
-    margin: 14px 0;      /* 更大列表项间距 */
+    margin: 12px 0;      /* 更大列表项间距（原14px → 12px）*/
     line-height: 2.1;
   }
 
@@ -187,16 +187,70 @@ function generateCSS(h1BackgroundImagePath = '') {
 
   /* 图片样式 - 限制最大宽度，防止图片撑开容器 */
   img {
-    max-width: calc(100% - 80px);  /* 减去左右内边距 */
+    max-width: calc(100% - 66px);  /* 减去左右内边距（原80px → 66px）*/
     height: auto;
     display: block;
-    margin: 25px 40px;    /* 上下间距 + 左右内边距 */
+    margin: 21px 33px;    /* 上下间距 + 左右内边距（原25px 40px → 21px 33px）*/
     border-radius: 8px;
   }
 
   /* Emoji 支持 */
   .emoji {
     font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  }
+
+  /* 表格样式 */
+  table {
+    width: calc(100% - 66px);  /* 减去左右内边距（原80px → 66px）*/
+    margin: 21px 33px;     /* 原25px 40px → 21px 33px */
+    border-collapse: collapse;
+    background-color: #2d2d30;
+    border: 1px solid #3c3c3c;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  thead {
+    background-color: #1e1e1e;
+  }
+
+  th {
+    padding: 13px 17px;    /* 原16px 20px → 13px 17px */
+    text-align: left;
+    font-weight: bold;
+    color: #4ec9b0;
+    border-bottom: 2px solid #007acc;
+    font-size: 25px;       /* 原30px → 25px */
+  }
+
+  td {
+    padding: 12px 17px;    /* 原14px 20px → 12px 17px */
+    color: #d4d4d4;
+    border-bottom: 1px solid #3c3c3c;
+    font-size: 23px;       /* 原28px → 23px */
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* 表格内的代码 */
+  table code {
+    font-size: 22px;       /* 原26px → 22px */
+  }
+
+  /* 封面图片 - 在h1-container内的封面图 */
+  .cover-image {
+    max-width: 100%;       /* 占满容器宽度 */
+    height: auto;
+    display: block;
+    margin: 33px 0 0 0;    /* 与标题保持间距 */
+    border-radius: 12px;   /* 圆角 */
+    padding: 0;            /* 去除内边距 */
   }
 `;
 }
@@ -211,7 +265,21 @@ async function convertMdToImage(mdFilePath, outputPath) {
     console.log(`开始转换: ${mdFilePath}`);
 
     // 读取Markdown文件
-    const mdContent = fs.readFileSync(mdFilePath, 'utf-8');
+    let mdContent = fs.readFileSync(mdFilePath, 'utf-8');
+
+    // 提取副标题和封面图片（从HTML注释中）
+    const subtitleMatch = mdContent.match(/<!--\s*subtitle:\s*(.+?)\s*-->/);
+    const coverMatch = mdContent.match(/<!--\s*cover:\s*(.+?)\s*-->/);
+
+    const subtitle = subtitleMatch ? subtitleMatch[1].trim() : null;
+    const coverImagePath = coverMatch ? coverMatch[1].trim() : null;
+
+    console.log(`提取的副标题: ${subtitle || '无'}`);
+    console.log(`提取的封面图: ${coverImagePath || '无'}`);
+
+    // 从markdown内容中移除这些注释，避免重复渲染
+    mdContent = mdContent.replace(/<!--\s*subtitle:\s*.+?\s*-->\s*/g, '');
+    mdContent = mdContent.replace(/<!--\s*cover:\s*.+?\s*-->\s*/g, '');
 
     // 获取Markdown文件所在目录（用于解析相对路径的图片）
     const mdDir = path.dirname(path.resolve(mdFilePath));
@@ -219,10 +287,34 @@ async function convertMdToImage(mdFilePath, outputPath) {
     // 将Markdown转换为HTML
     let htmlContent = marked(mdContent);
 
-    // 在第一个h1标签外包裹容器（不添加副标题）
+    // 动态生成h1-container的内容
+    let h1ContainerContent = '';
+
+    // 添加副标题（如果存在）
+    if (subtitle) {
+      h1ContainerContent += `<div class="season-subtitle">${subtitle}</div>`;
+    }
+
+    // 添加主标题（保留原有的h1标签）
+    h1ContainerContent += '<h1>$1</h1>';
+
+    // 添加封面图片（如果存在）
+    if (coverImagePath) {
+      // 处理封面图片路径
+      let coverImageUrl = coverImagePath;
+      if (!coverImagePath.startsWith('http://') && !coverImagePath.startsWith('https://')) {
+        // 相对路径，转换为绝对路径
+        const coverImageAbsPath = path.resolve(mdDir, coverImagePath);
+        coverImageUrl = `file:///${coverImageAbsPath.replace(/\\/g, '/')}`;
+        console.log(`封面图路径: ${coverImageUrl}`);
+      }
+      h1ContainerContent += `<img class="cover-image" src="${coverImageUrl}" alt="封面图">`;
+    }
+
+    // 在第一个h1标签外包裹容器，包含副标题和封面图
     htmlContent = htmlContent.replace(
       /<h1>(.*?)<\/h1>/,
-      '<div class="h1-container"><h1>$1</h1></div>'
+      `<div class="h1-container">${h1ContainerContent}</div>`
     );
 
     // 处理背景图路径

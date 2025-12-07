@@ -13,6 +13,7 @@
   "dependencies": {
     "chrome-devtools-mcp": "^0.8.1",
     "marked": "^16.4.0",
-    "puppeteer": "^24.24.0"
+    "puppeteer": "^24.32.0",
+    "sharp": "^0.34.4"
   }
 }

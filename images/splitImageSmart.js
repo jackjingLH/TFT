@@ -7,17 +7,17 @@ import sharp from 'sharp';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// 配置项
+// 配置项（基于宽度 900px）
 const SPLIT_CONFIG = {
   aspectRatio: 3 / 4,     // 目标 3:4 比例
-  idealHeight: 1440,      // 理想高度（3:4比例）
-  minHeight: 800,         // 最小切片高度（允许最后一片缩小）
-  maxHeight: 1440,        // 最大切片高度（严格限制，不能超过）
-  scanRange: 200,         // 扫描范围：在理想切割点前后200px内寻找最佳位置
+  idealHeight: 1200,      // 理想高度（3:4比例，900 × 4/3 = 1200）
+  minHeight: 667,         // 最小切片高度（允许最后一片缩小，原800px → 667px）
+  maxHeight: 1200,        // 最大切片高度（严格限制，不能超过，原1440px → 1200px）
+  scanRange: 100,         // 扫描范围：在理想切割点前后167px内寻找最佳位置（原200px → 167px）
   textThreshold: 20,      // 文字检测阈值：像素方差大于此值认为是文字区域
-  firstSliceExact: true,  // 第一张图片是否必须是精确的3:4尺寸（1440px）
-  allSlicesExact: true,   // 所有图片是否都填充到3:4尺寸（1440px）
-  cutMargin: 5,           // 切割边距：在找到空白区域后向下偏移5px，避免切到文字边缘
+  firstSliceExact: true,  // 第一张图片是否必须是精确的3:4尺寸（1200px）
+  allSlicesExact: true,   // 所有图片是否都填充到3:4尺寸（1200px）
+  cutMargin: 4,           // 切割边距：在找到空白区域后向下偏移4px，避免切到文字边缘（原5px → 4px）
 };
 
 /**
@@ -157,14 +157,14 @@ async function calculateSmartCutPoints(imagePath, width, height) {
 
     // 特殊处理：第一张图片要求精确 3:4 尺寸
     if (partNumber === 1 && SPLIT_CONFIG.firstSliceExact) {
-      const exactHeight = SPLIT_CONFIG.idealHeight; // 1440px
+      const exactHeight = SPLIT_CONFIG.idealHeight; // 1200px
       const minSearchY = Math.max(SPLIT_CONFIG.minHeight, exactHeight - SPLIT_CONFIG.scanRange); // 向上搜索
-      const maxSearchY = Math.min(height, exactHeight); // 不超过1440px
+      const maxSearchY = Math.min(height, exactHeight); // 不超过1200px
 
       console.log(`  [第一张图片] 目标高度: ${exactHeight}px`);
       console.log(`  搜索空白区域: ${minSearchY}~${maxSearchY}px (在理想高度范围内)`);
 
-      // 在1440px范围内搜索最佳空白区域
+      // 在1200px范围内搜索最佳空白区域
       const bestEndY = await findBestCutPoint(imagePath, exactHeight, minSearchY, maxSearchY, width, height);
 
       cutPoints.push({
@@ -245,7 +245,7 @@ async function splitImageByPoints(imagePath, cutPoints, outputDir, baseFilename)
     // 填充到3:4尺寸（包括最后一片）
     if (shouldPad && point.height < SPLIT_CONFIG.idealHeight) {
       const paddingHeight = SPLIT_CONFIG.idealHeight - point.height;
-      console.log(`  [填充] 第${point.part}张图片高度 ${point.height}px < 1440px，底部填充 ${paddingHeight}px 空白`);
+      console.log(`  [填充] 第${point.part}张图片高度 ${point.height}px < ${SPLIT_CONFIG.idealHeight}px，底部填充 ${paddingHeight}px 空白`);
 
       // 创建一个空白区域（使用深色背景 #1e1e1e）
       const paddingBuffer = await sharp({
@@ -382,9 +382,9 @@ if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, '/')}`){
     console.log('  node splitImage.js ./output.png');
     console.log('  node splitImage.js ./output.png ./my_split\n');
     console.log('功能:');
-    console.log('  - 自动按3:4比例分割长图');
+    console.log('  - 自动按3:4比例分割长图（宽900px × 高1200px）');
     console.log('  - 智能识别文字边界，避开文字区域');
-    console.log('  - 允许高度在 1200-1600px 范围内浮动');
+    console.log('  - 允许高度在 667-1200px 范围内浮动');
     console.log('  - 优先在空白区域切割');
     console.log('  - 保留原始长图不变');
     process.exit(1);
