@@ -48,26 +48,17 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-size: ${CONFIG.fontSize};
     line-height: ${CONFIG.lineHeight};
 
-    /* 复合背景设计：渐变 + 纹理 + 图案 */
+    /* 简化背景设计：纯净渐变 + 微妙纹理 */
     background:
-      /* 顶层纹理：细微的点状图案 */
-      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 1px),
-
-      /* 中层纹理：斜线条纹 */
-      repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(255,255,255,0.01) 10px,
-        rgba(255,255,255,0.01) 20px
-      ),
+      /* 单层纹理：细微的点状图案 */
+      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 1px),
 
       /* 底层渐变：主色调渐变 */
       linear-gradient(135deg,
         #1a1f2e 0%,    /* 深蓝灰 */
-        #1e2535 25%,   /* 中蓝灰 */
-        #1f1f2e 50%,   /* 带紫色调的深灰 */
-        #1a1f28 75%,   /* 青灰色 */
+        #1e2535 30%,   /* 中蓝灰 */
+        #1f1f2e 60%,   /* 带紫色调的深灰 */
+        #1a1f28 90%,   /* 青灰色 */
         #181825 100%   /* 深灰蓝 */
       ),
 
@@ -76,8 +67,7 @@ function generateCSS(h1BackgroundImagePath = '') {
 
     /* 背景图案尺寸设置 */
     background-size:
-      20px 20px,    /* 点状图案尺寸 */
-      40px 40px,    /* 条纹图案尺寸 */
+      30px 30px,    /* 点状图案尺寸，更稀疏 */
       100% 100%,    /* 渐变覆盖整个区域 */
       100% 100%;    /* 基础色覆盖整个区域 */
 
@@ -311,16 +301,9 @@ function generateCSS(h1BackgroundImagePath = '') {
     overflow-x: auto;
     border: 1px solid rgba(78, 201, 176, 0.2);
 
-    /* 背景纹理 */
+    /* 简化背景：仅保留渐变 */
     background-image:
-      linear-gradient(135deg, rgba(45, 45, 48, 0.95) 0%, rgba(35, 35, 38, 0.95) 100%),
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(255, 255, 255, 0.01) 2px,
-        rgba(255, 255, 255, 0.01) 4px
-      );
+      linear-gradient(135deg, rgba(45, 45, 48, 0.95) 0%, rgba(35, 35, 38, 0.95) 100%);
 
     /* 内阴影和外发光 */
     box-shadow:
