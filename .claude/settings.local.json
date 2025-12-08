@@ -39,7 +39,8 @@
       "Bash(nul)",
       "Bash(if not exist .claudecommands mkdir .claudecommands)",
       "Bash(if not exist \"D:\\game\\code\\convertTFT\\TFT\\.claude\\commands\" mkdir \"D:\\game\\code\\convertTFT\\TFT\\.claude\\commands\")",
-      "Bash(TFT.md)"
+      "Bash(TFT.md)",
+      "Bash(del:*)"
     ],
     "deny": [],
     "ask": []

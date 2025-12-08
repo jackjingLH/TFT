@@ -47,8 +47,80 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-family: ${CONFIG.fontFamily};
     font-size: ${CONFIG.fontSize};
     line-height: ${CONFIG.lineHeight};
-    background-color: ${CONFIG.backgroundColor};
+
+    /* 复合背景设计：渐变 + 纹理 + 图案 */
+    background:
+      /* 顶层纹理：细微的点状图案 */
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 1px),
+
+      /* 中层纹理：斜线条纹 */
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.01) 10px,
+        rgba(255,255,255,0.01) 20px
+      ),
+
+      /* 底层渐变：主色调渐变 */
+      linear-gradient(135deg,
+        #1a1f2e 0%,    /* 深蓝灰 */
+        #1e2535 25%,   /* 中蓝灰 */
+        #1f1f2e 50%,   /* 带紫色调的深灰 */
+        #1a1f28 75%,   /* 青灰色 */
+        #181825 100%   /* 深灰蓝 */
+      ),
+
+      /* 基础背景色 */
+      #1e1e1e;
+
+    /* 背景图案尺寸设置 */
+    background-size:
+      20px 20px,    /* 点状图案尺寸 */
+      40px 40px,    /* 条纹图案尺寸 */
+      100% 100%,    /* 渐变覆盖整个区域 */
+      100% 100%;    /* 基础色覆盖整个区域 */
+
+    background-attachment: fixed;
     color: #d4d4d4;  /* VSCode 文本颜色 */
+
+    /* 添加微妙的边框装饰 */
+    position: relative;
+  }
+
+  /* 页面顶部和底部的装饰线条 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(78, 201, 176, 0.3) 20%,
+      rgba(78, 201, 176, 0.8) 50%,
+      rgba(78, 201, 176, 0.3) 80%,
+      transparent 100%
+    );
+    z-index: 10;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(86, 156, 214, 0.3) 15%,
+      rgba(86, 156, 214, 0.6) 50%,
+      rgba(86, 156, 214, 0.3) 85%,
+      transparent 100%
+    );
+    z-index: 10;
   }
 
   /* 一级标题容器 - 用于包裹副标题和主标题 */
@@ -56,21 +128,68 @@ function generateCSS(h1BackgroundImagePath = '') {
     margin: 0;
     padding: 92px 33px 92px 33px;  /* 上下边距：92px（原110px），左右：33px（原40px）*/
 
+    /* 增强的背景设计 */
+    position: relative;
+
     /* 使用图片作为背景（如果配置了的话）*/
     ${h1BackgroundImagePath ? `
     background-image:
-      linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),  /* 深色遮罩，确保文字可读 */
-      url('${h1BackgroundImagePath}');  /* 背景图 */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+      /* 增强的渐变遮罩 */
+      linear-gradient(135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+      ),
+      /* 装饰性纹理层 */
+      radial-gradient(circle at 20% 50%, rgba(78, 201, 176, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(86, 156, 214, 0.1) 0%, transparent 50%),
+      /* 主背景图 */
+      url('${h1BackgroundImagePath}');
+    background-size: cover, cover, cover, cover;
+    background-position: center, center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+
+    /* 添加微妙的内边框 */
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
     ` : `
-    /* 渐变背景（无背景图时使用）*/
-    background: linear-gradient(135deg, #1a3a52 0%, #2d5a6f 50%, #1e4d5c 100%);
+    /* 增强的渐变背景（无背景图时使用）*/
+    background:
+      /* 装饰性光效 */
+      radial-gradient(circle at 15% 30%, rgba(78, 201, 176, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 85% 70%, rgba(86, 156, 214, 0.12) 0%, transparent 45%),
+      /* 主渐变 */
+      linear-gradient(135deg,
+        #1a3a52 0%,
+        #2d5a6f 30%,
+        #1e4d5c 60%,
+        #1a3a52 100%
+      ),
+      /* 底色 */
+      #1a3a52;
+
+    /* 添加微妙的纹理 */
+    background-image:
+      radial-gradient(circle at 15% 30%, rgba(78, 201, 176, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 85% 70%, rgba(86, 156, 214, 0.12) 0%, transparent 45%),
+      linear-gradient(135deg, #1a3a52 0%, #2d5a6f 30%, #1e4d5c 60%, #1a3a52 100%),
+      #1a3a52;
+    background-size: 200% 200%, 180% 180%, 100% 100%, 100% 100%;
+
+    /* 添加微妙的内边框和阴影 */
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3);
     `}
 
-    /* 如果图片加载失败，使用渐变背景作为后备 */
-    background-color: #1a3a52;
+    /* 标题区域底部分割线 */
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg,
+      transparent 0%,
+      rgba(78, 201, 176, 0.5) 20%,
+      rgba(78, 201, 176, 0.8) 50%,
+      rgba(78, 201, 176, 0.5) 80%,
+      transparent 100%
+    ) 1;
   }
 
   /* 赛季副标题 - 一级标题上方的小字 */
@@ -103,6 +222,24 @@ function generateCSS(h1BackgroundImagePath = '') {
     margin: 23px 0 13px 0;  /* 原28px 0 16px 0 → 23px 0 13px 0 */
     padding: 0 33px;     /* 左右内边距（原40px → 33px）*/
     color: #4ec9b0;
+
+    /* 添加微妙的背景装饰 */
+    position: relative;
+    background: linear-gradient(90deg,
+      rgba(78, 201, 176, 0.05) 0%,
+      rgba(78, 201, 176, 0.02) 50%,
+      rgba(78, 201, 176, 0.05) 100%
+    );
+
+    /* 左侧装饰条 */
+    border-left: 4px solid #4ec9b0;
+    padding-left: 29px;  /* 调整内边距，保持文字位置 */
+
+    /* 微妙的顶部和底部边框 */
+    border-top: 1px solid rgba(78, 201, 176, 0.1);
+    border-bottom: 1px solid rgba(78, 201, 176, 0.1);
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
 
   /* 三级标题 */
@@ -112,6 +249,19 @@ function generateCSS(h1BackgroundImagePath = '') {
     margin: 20px 0 12px 0;  /* 原24px 0 14px 0 → 20px 0 12px 0 */
     padding: 0 33px;     /* 原40px → 33px */
     color: #4ec9b0;
+
+    /* 微妙的背景装饰 */
+    background: linear-gradient(90deg,
+      rgba(86, 156, 214, 0.03) 0%,
+      transparent 50%,
+      rgba(86, 156, 214, 0.03) 100%
+    );
+
+    /* 左侧装饰条（更细一些） */
+    border-left: 3px solid #569cd6;
+    padding-left: 30px;  /* 调整内边距 */
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 
   /* 段落 - 添加左右内边距 */
@@ -135,19 +285,47 @@ function generateCSS(h1BackgroundImagePath = '') {
   }
 
   code {
-    background-color: #2d2d30;  /* VSCode 代码背景 */
+    background: linear-gradient(135deg,
+      rgba(45, 45, 48, 0.9) 0%,
+      rgba(35, 35, 38, 0.9) 100%
+    );
     color: #ce9178;  /* VSCode 字符串颜色 */
     padding: 2px 6px;
     border-radius: 3px;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+
+    /* 微妙的内阴影 */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+
+    /* 细微的边框 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   pre {
-    background-color: #2d2d30;
+    background: linear-gradient(135deg,
+      rgba(45, 45, 48, 0.95) 0%,
+      rgba(35, 35, 38, 0.95) 100%
+    );
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 8px;
     overflow-x: auto;
-    border: 1px solid #3c3c3c;
+    border: 1px solid rgba(78, 201, 176, 0.2);
+
+    /* 背景纹理 */
+    background-image:
+      linear-gradient(135deg, rgba(45, 45, 48, 0.95) 0%, rgba(35, 35, 38, 0.95) 100%),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.01) 2px,
+        rgba(255, 255, 255, 0.01) 4px
+      );
+
+    /* 内阴影和外发光 */
+    box-shadow:
+      inset 0 1px 3px rgba(0, 0, 0, 0.3),
+      0 0 8px rgba(78, 201, 176, 0.1);
   }
 
   pre code {
@@ -204,14 +382,32 @@ function generateCSS(h1BackgroundImagePath = '') {
     width: calc(100% - 66px);  /* 减去左右内边距（原80px → 66px）*/
     margin: 21px 33px;     /* 原25px 40px → 21px 33px */
     border-collapse: collapse;
-    background-color: #2d2d30;
-    border: 1px solid #3c3c3c;
-    border-radius: 8px;
+
+    /* 表格背景：多层渐变 */
+    background: linear-gradient(135deg,
+      rgba(45, 45, 48, 0.9) 0%,
+      rgba(35, 35, 38, 0.9) 100%
+    );
+
+    /* 表格边框和阴影 */
+    border: 1px solid rgba(78, 201, 176, 0.3);
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.2),
+      0 0 16px rgba(78, 201, 176, 0.1);
   }
 
   thead {
-    background-color: #1e1e1e;
+    /* 表头渐变背景 */
+    background: linear-gradient(135deg,
+      rgba(30, 30, 30, 0.95) 0%,
+      rgba(26, 26, 26, 0.95) 100%
+    );
+
+    /* 表头装饰 */
+    border-bottom: 2px solid #4ec9b0;
+    position: relative;
   }
 
   th {
