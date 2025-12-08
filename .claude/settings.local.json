@@ -33,7 +33,13 @@
       "Bash(git clone:*)",
       "Bash(git config:*)",
       "WebFetch(domain:www.datatft.com)",
-      "WebFetch(domain:www.metatft.com)"
+      "WebFetch(domain:www.metatft.com)",
+      "Bash(python update_rules.py:*)",
+      "Bash(del update_rules.py 2)",
+      "Bash(nul)",
+      "Bash(if not exist .claudecommands mkdir .claudecommands)",
+      "Bash(if not exist \"D:\\game\\code\\convertTFT\\TFT\\.claude\\commands\" mkdir \"D:\\game\\code\\convertTFT\\TFT\\.claude\\commands\")",
+      "Bash(TFT.md)"
     ],
     "deny": [],
     "ask": []
