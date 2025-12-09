@@ -4,47 +4,40 @@
   "fullImage": "D:\\code\\TFT\\output\\TFT_full.png",
   "splitImages": [
     {
-      "path": "D:\\code\\TFT\\output\\TFT_part1_of_6.png",
-      "filename": "TFT_part1_of_6.png",
+      "path": "D:\\code\\TFT\\output\\TFT_part1_of_5.png",
+      "filename": "TFT_part1_of_5.png",
       "width": 900,
       "height": 1200,
-      "sizeKB": 822.7
+      "sizeKB": 694.2
     },
     {
-      "path": "D:\\code\\TFT\\output\\TFT_part2_of_6.png",
-      "filename": "TFT_part2_of_6.png",
+      "path": "D:\\code\\TFT\\output\\TFT_part2_of_5.png",
+      "filename": "TFT_part2_of_5.png",
       "width": 900,
       "height": 1200,
-      "sizeKB": 101.3
+      "sizeKB": 340.8
     },
     {
-      "path": "D:\\code\\TFT\\output\\TFT_part3_of_6.png",
-      "filename": "TFT_part3_of_6.png",
+      "path": "D:\\code\\TFT\\output\\TFT_part3_of_5.png",
+      "filename": "TFT_part3_of_5.png",
       "width": 900,
       "height": 1200,
-      "sizeKB": 99.7
+      "sizeKB": 387.2
     },
     {
-      "path": "D:\\code\\TFT\\output\\TFT_part4_of_6.png",
-      "filename": "TFT_part4_of_6.png",
+      "path": "D:\\code\\TFT\\output\\TFT_part4_of_5.png",
+      "filename": "TFT_part4_of_5.png",
       "width": 900,
       "height": 1200,
-      "sizeKB": 100.5
+      "sizeKB": 384.9
     },
     {
-      "path": "D:\\code\\TFT\\output\\TFT_part5_of_6.png",
-      "filename": "TFT_part5_of_6.png",
+      "path": "D:\\code\\TFT\\output\\TFT_part5_of_5.png",
+      "filename": "TFT_part5_of_5.png",
       "width": 900,
       "height": 1200,
-      "sizeKB": 87.8
-    },
-    {
-      "path": "D:\\code\\TFT\\output\\TFT_part6_of_6.png",
-      "filename": "TFT_part6_of_6.png",
-      "width": 900,
-      "height": 1200,
-      "sizeKB": 9.8
+      "sizeKB": 28.7
     }
   ],
-  "timestamp": "2025-12-07T17:09:49.132Z"
+  "timestamp": "2025-12-09T16:36:52.193Z"
 }

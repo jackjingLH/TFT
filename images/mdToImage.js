@@ -124,11 +124,11 @@ function generateCSS(h1BackgroundImagePath = '') {
     /* 使用图片作为背景（如果配置了的话）*/
     ${h1BackgroundImagePath ? `
     background-image:
-      /* 增强的渐变遮罩 */
+      /* 增强的渐变遮罩（加深处理） */
       linear-gradient(135deg,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.5) 50%,
-        rgba(0, 0, 0, 0.6) 100%
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.75) 50%,
+        rgba(0, 0, 0, 0.8) 100%
       ),
       /* 装饰性纹理层 */
       radial-gradient(circle at 20% 50%, rgba(78, 201, 176, 0.1) 0%, transparent 50%),
