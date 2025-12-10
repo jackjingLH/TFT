@@ -1,4 +1,4 @@
-<!-- subtitle: 推荐新手 狗分阵容 -->
+<!-- tags: 推荐新手, 冷门阵容 -->
 <!-- cover: c:\Users\LiHaoJing\Downloads\dataTFT (16).png -->
 # 艾克 科加斯
 

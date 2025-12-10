@@ -182,14 +182,33 @@ function generateCSS(h1BackgroundImagePath = '') {
     ) 1;
   }
 
-  /* 赛季副标题 - 一级标题上方的小字 */
-  .season-subtitle {
+  /* 标签容器 - 一级标题上方的标签组 */
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 17px;           /* 标签之间的间距 */
+    margin: 0 0 16px 0;  /* 下方留16px间距 */
+    align-items: center;
+  }
+
+  /* 单个标签样式 */
+  .tag {
+    display: inline-block;
     font-size: 32px;     /* 与正文相同大小 */
-    font-weight: 400;    /* 正常粗细 */
-    color: rgba(255, 255, 255, 0.7);  /* 半透明白色 */
-    margin: 0 0 13px 0;  /* 下方留13px间距 */
-    letter-spacing: 2px; /* 字间距 */
-    text-align: left;    /* 左对齐 */
+    font-weight: 600;    /* 半粗体 */
+    line-height: 1.2;    /* 覆盖全局line-height 2.1，使标签更紧凑 */
+    color: #1a1a1a;      /* 深色文字，对比度更高 */
+    background: linear-gradient(135deg,
+      rgba(255, 193, 7, 0.95) 0%,
+      rgba(255, 152, 0, 0.95) 100%
+    );
+    padding: 2px 15px;   /* 上下2px，左右15px */
+    border-radius: 16px; /* 圆角胶囊设计 */
+    border: 2px solid rgba(255, 193, 7, 1);  /* 金黄色边框 */
+    letter-spacing: 1px; /* 字间距 */
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4);   /* 金色发光效果 */
+    transition: all 0.3s ease;
+    vertical-align: middle; /* 垂直居中对齐 */
   }
 
   /* 一级标题 - 封面级别设计（带背景图） */
@@ -446,18 +465,19 @@ async function convertMdToImage(mdFilePath, outputPath) {
     // 读取Markdown文件
     let mdContent = fs.readFileSync(mdFilePath, 'utf-8');
 
-    // 提取副标题和封面图片（从HTML注释中）
-    const subtitleMatch = mdContent.match(/<!--\s*subtitle:\s*(.+?)\s*-->/);
+    // 提取标签和封面图片（从HTML注释中）
+    const tagsMatch = mdContent.match(/<!--\s*tags:\s*(.+?)\s*-->/);
     const coverMatch = mdContent.match(/<!--\s*cover:\s*(.+?)\s*-->/);
 
-    const subtitle = subtitleMatch ? subtitleMatch[1].trim() : null;
+    const tagsString = tagsMatch ? tagsMatch[1].trim() : null;
+    const tags = tagsString ? tagsString.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
     const coverImagePath = coverMatch ? coverMatch[1].trim() : null;
 
-    console.log(`提取的副标题: ${subtitle || '无'}`);
+    console.log(`提取的标签: ${tags.length > 0 ? tags.join(', ') : '无'}`);
     console.log(`提取的封面图: ${coverImagePath || '无'}`);
 
     // 从markdown内容中移除这些注释，避免重复渲染
-    mdContent = mdContent.replace(/<!--\s*subtitle:\s*.+?\s*-->\s*/g, '');
+    mdContent = mdContent.replace(/<!--\s*tags:\s*.+?\s*-->\s*/g, '');
     mdContent = mdContent.replace(/<!--\s*cover:\s*.+?\s*-->\s*/g, '');
 
     // 获取Markdown文件所在目录（用于解析相对路径的图片）
@@ -469,9 +489,13 @@ async function convertMdToImage(mdFilePath, outputPath) {
     // 动态生成h1-container的内容
     let h1ContainerContent = '';
 
-    // 添加副标题（如果存在）
-    if (subtitle) {
-      h1ContainerContent += `<div class="season-subtitle">${subtitle}</div>`;
+    // 添加标签容器（如果存在标签）
+    if (tags.length > 0) {
+      h1ContainerContent += '<div class="tags-container">';
+      tags.forEach(tag => {
+        h1ContainerContent += `<span class="tag">${tag}</span>`;
+      });
+      h1ContainerContent += '</div>';
     }
 
     // 添加主标题（保留原有的h1标签）
