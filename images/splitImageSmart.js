@@ -215,6 +215,118 @@ async function calculateSmartCutPoints(imagePath, width, height) {
 }
 
 /**
+ * 从图片顶部提取背景颜色（避开文字区域）
+ * @param {number} sampleOffset - 向内偏移量，跳过边缘文字区域
+ */
+async function extractTopColor(imagePath, extractTop, width, sampleOffset = 50) {
+  try {
+    // 从顶部向内偏移，避开紧邻的文字
+    const sampleTop = extractTop + sampleOffset;
+    const sampleHeight = 50; // 采样50行，获取更稳定的平均值
+
+    const region = await sharp(imagePath)
+      .extract({
+        left: 0,
+        top: Math.floor(sampleTop),
+        width: Math.floor(width),
+        height: sampleHeight,
+      })
+      .raw()
+      .toBuffer();
+
+    // 收集所有像素的灰度值和颜色，用于过滤文字像素
+    const pixels = [];
+    for (let i = 0; i < region.length; i += 3) {
+      const r = region[i];
+      const g = region[i + 1];
+      const b = region[i + 2];
+      const gray = (r + g + b) / 3;
+      pixels.push({ r, g, b, gray });
+    }
+
+    // 按灰度值排序，取中间60%的像素（排除极亮的文字和极暗的异常点）
+    pixels.sort((a, b) => a.gray - b.gray);
+    const startIdx = Math.floor(pixels.length * 0.2);
+    const endIdx = Math.floor(pixels.length * 0.8);
+    const backgroundPixels = pixels.slice(startIdx, endIdx);
+
+    // 计算背景像素的平均颜色
+    let r = 0, g = 0, b = 0;
+    for (const pixel of backgroundPixels) {
+      r += pixel.r;
+      g += pixel.g;
+      b += pixel.b;
+    }
+
+    return {
+      r: Math.round(r / backgroundPixels.length),
+      g: Math.round(g / backgroundPixels.length),
+      b: Math.round(b / backgroundPixels.length),
+      alpha: 1
+    };
+  } catch (error) {
+    console.log(`  ! 无法提取顶部颜色，使用默认值`);
+    return { r: 30, g: 30, b: 30, alpha: 1 };
+  }
+}
+
+/**
+ * 从图片底部提取背景颜色（避开文字区域）
+ * @param {number} sampleOffset - 向内偏移量，跳过边缘文字区域
+ */
+async function extractBottomColor(imagePath, extractTop, extractHeight, width, sampleOffset = 50) {
+  try {
+    // 从底部向内偏移，避开紧邻的文字
+    const sampleHeight = 50; // 采样50行
+    const sampleTop = extractTop + extractHeight - sampleOffset - sampleHeight;
+
+    const region = await sharp(imagePath)
+      .extract({
+        left: 0,
+        top: Math.floor(sampleTop),
+        width: Math.floor(width),
+        height: sampleHeight,
+      })
+      .raw()
+      .toBuffer();
+
+    // 收集所有像素的灰度值和颜色，用于过滤文字像素
+    const pixels = [];
+    for (let i = 0; i < region.length; i += 3) {
+      const r = region[i];
+      const g = region[i + 1];
+      const b = region[i + 2];
+      const gray = (r + g + b) / 3;
+      pixels.push({ r, g, b, gray });
+    }
+
+    // 按灰度值排序，取中间60%的像素（排除极亮的文字和极暗的异常点）
+    pixels.sort((a, b) => a.gray - b.gray);
+    const startIdx = Math.floor(pixels.length * 0.2);
+    const endIdx = Math.floor(pixels.length * 0.8);
+    const backgroundPixels = pixels.slice(startIdx, endIdx);
+
+    // 计算背景像素的平均颜色
+    let r = 0, g = 0, b = 0;
+    for (const pixel of backgroundPixels) {
+      r += pixel.r;
+      g += pixel.g;
+      b += pixel.b;
+    }
+
+    return {
+      r: Math.round(r / backgroundPixels.length),
+      g: Math.round(g / backgroundPixels.length),
+      b: Math.round(b / backgroundPixels.length),
+      alpha: 1
+    };
+  } catch (error) {
+    console.log(`  ! 无法提取底部颜色，使用默认值`);
+    return { r: 30, g: 30, b: 30, alpha: 1 };
+  }
+}
+
+/**
  * 根据切割点分割图片
  */
 async function splitImageByPoints(imagePath, cutPoints, outputDir, baseFilename) {
@@ -245,25 +357,92 @@ async function splitImageByPoints(imagePath, cutPoints, outputDir, baseFilename)
     // 填充到3:4尺寸（包括最后一片）
     if (shouldPad && point.height < SPLIT_CONFIG.idealHeight) {
       const paddingHeight = SPLIT_CONFIG.idealHeight - point.height;
-      console.log(`  [填充] 第${point.part}张图片高度 ${point.height}px < ${SPLIT_CONFIG.idealHeight}px，底部填充 ${paddingHeight}px 空白`);
 
-      // 创建一个空白区域（使用深色背景 #1e1e1e）
-      const paddingBuffer = await sharp({
-        create: {
-          width: metadata.width,
-          height: paddingHeight,
-          channels: 4,
-          background: { r: 30, g: 30, b: 30, alpha: 1 } // 深色背景 #1e1e1e
-        }
-      }).png().toBuffer();
+      // 最后一张图片：顶部对齐，只在底部填充
+      // 其他图片：上下居中填充
+      if (isLastSlice) {
+        console.log(`  [填充] 第${point.part}张图片（最后一张）高度 ${point.height}px < ${SPLIT_CONFIG.idealHeight}px，底部填充 ${paddingHeight}px`);
 
-      // 将原图和填充区域拼接
-      imageBuffer = await sharp(imageBuffer)
-        .extend({
-          bottom: paddingHeight,
-          background: { r: 30, g: 30, b: 30, alpha: 1 }
+        // 只从底部提取颜色
+        const bottomColor = await extractBottomColor(imagePath, point.start, point.height, metadata.width);
+        console.log(`  [颜色融合] 底部: RGB(${bottomColor.r}, ${bottomColor.g}, ${bottomColor.b})`);
+
+        // 创建底部填充区域
+        const bottomPaddingBuffer = await sharp({
+          create: {
+            width: metadata.width,
+            height: paddingHeight,
+            channels: 4,
+            background: bottomColor
+          }
+        }).png().toBuffer();
+
+        // 使用 composite 将原图和底部padding拼接
+        imageBuffer = await sharp({
+          create: {
+            width: metadata.width,
+            height: SPLIT_CONFIG.idealHeight,
+            channels: 4,
+            background: { r: 0, g: 0, b: 0, alpha: 0 }
+          }
         })
+        .composite([
+          { input: imageBuffer, top: 0, left: 0 },
+          { input: bottomPaddingBuffer, top: point.height, left: 0 }
+        ])
+        .png()
         .toBuffer();
+
+      } else {
+        // 非最后一张：上下居中填充
+        const topPadding = Math.floor(paddingHeight / 2);
+        const bottomPadding = paddingHeight - topPadding;
+
+        console.log(`  [填充] 第${point.part}张图片高度 ${point.height}px < ${SPLIT_CONFIG.idealHeight}px，上下居中填充 ${paddingHeight}px (上:${topPadding}px, 下:${bottomPadding}px)`);
+
+        // 从当前切片顶部和底部提取平均颜色，实现自然融合
+        const topColor = await extractTopColor(imagePath, point.start, metadata.width);
+        const bottomColor = await extractBottomColor(imagePath, point.start, point.height, metadata.width);
+
+        console.log(`  [颜色融合] 顶部: RGB(${topColor.r}, ${topColor.g}, ${topColor.b}) | 底部: RGB(${bottomColor.r}, ${bottomColor.g}, ${bottomColor.b})`);
+
+        // 创建顶部填充区域
+        const topPaddingBuffer = await sharp({
+          create: {
+            width: metadata.width,
+            height: topPadding,
+            channels: 4,
+            background: topColor
+          }
+        }).png().toBuffer();
+
+        // 创建底部填充区域
+        const bottomPaddingBuffer = await sharp({
+          create: {
+            width: metadata.width,
+            height: bottomPadding,
+            channels: 4,
+            background: bottomColor
+          }
+        }).png().toBuffer();
+
+        // 使用 composite 将顶部padding、原图、底部padding拼接成完整图片
+        imageBuffer = await sharp({
+          create: {
+            width: metadata.width,
+            height: SPLIT_CONFIG.idealHeight,
+            channels: 4,
+            background: { r: 0, g: 0, b: 0, alpha: 0 }
+          }
+        })
+        .composite([
+          { input: topPaddingBuffer, top: 0, left: 0 },
+          { input: imageBuffer, top: topPadding, left: 0 },
+          { input: bottomPaddingBuffer, top: topPadding + point.height, left: 0 }
+        ])
+        .png()
+        .toBuffer();
+      }
     }
 
     // 保存最终图片
