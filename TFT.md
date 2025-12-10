@@ -1,5 +1,6 @@
 <!-- tags: 推荐新手, 冷门阵容 -->
-<!-- cover: c:\Users\LiHaoJing\Downloads\dataTFT (16).png -->
+<!-- cover: dataTFT (13).png -->
+<!-- backup: ekko-chogath -->
 # 艾克 科加斯
 
 ## 📖 概要
