@@ -293,7 +293,7 @@ async function backupComposition(compositionName, options = {}) {
   console.log('========================================\n');
 
   const sourceDir = path.join(__dirname, '..');
-  const targetRoot = options.targetRoot || 'D:/code/TEXTCODE/tftblog-nextjs/public/guides';
+  const targetRoot = options.targetRoot || path.join(sourceDir, 'guides');
   const targetDir = path.join(targetRoot, compositionName);
 
   console.log(`📁 源目录: ${sourceDir}`);
