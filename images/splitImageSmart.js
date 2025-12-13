@@ -17,7 +17,7 @@ const SPLIT_CONFIG = {
   textThreshold: 20,      // 文字检测阈值：像素方差大于此值认为是文字区域
   firstSliceExact: true,  // 第一张图片是否必须是精确的3:4尺寸（1200px）
   allSlicesExact: true,   // 所有图片是否都填充到3:4尺寸（1200px）
-  cutMargin: 4,           // 切割边距：在找到空白区域后向下偏移4px，避免切到文字边缘（原5px → 4px）
+  cutMargin: 2,           // 切割边距：在找到空白区域后向下偏移4px，避免切到文字边缘（原5px → 4px）
 };
 
 /**
@@ -406,27 +406,45 @@ async function splitImageByPoints(imagePath, cutPoints, outputDir, baseFilename)
 
         console.log(`  [颜色融合] 顶部: RGB(${topColor.r}, ${topColor.g}, ${topColor.b}) | 底部: RGB(${bottomColor.r}, ${bottomColor.g}, ${bottomColor.b})`);
 
-        // 创建顶部填充区域
-        const topPaddingBuffer = await sharp({
-          create: {
-            width: metadata.width,
-            height: topPadding,
-            channels: 4,
-            background: topColor
-          }
-        }).png().toBuffer();
+        // 创建顶部填充区域（只有当高度大于0时才创建）
+        let topPaddingBuffer = null;
+        if (topPadding > 0) {
+          topPaddingBuffer = await sharp({
+            create: {
+              width: metadata.width,
+              height: topPadding,
+              channels: 4,
+              background: topColor
+            }
+          }).png().toBuffer();
+        }
 
-        // 创建底部填充区域
-        const bottomPaddingBuffer = await sharp({
-          create: {
-            width: metadata.width,
-            height: bottomPadding,
-            channels: 4,
-            background: bottomColor
-          }
-        }).png().toBuffer();
+        // 创建底部填充区域（只有当高度大于0时才创建）
+        let bottomPaddingBuffer = null;
+        if (bottomPadding > 0) {
+          bottomPaddingBuffer = await sharp({
+            create: {
+              width: metadata.width,
+              height: bottomPadding,
+              channels: 4,
+              background: bottomColor
+            }
+          }).png().toBuffer();
+        }
 
         // 使用 composite 将顶部padding、原图、底部padding拼接成完整图片
+        const compositeInputs = [];
+
+        if (topPaddingBuffer) {
+          compositeInputs.push({ input: topPaddingBuffer, top: 0, left: 0 });
+        }
+
+        compositeInputs.push({ input: imageBuffer, top: topPadding, left: 0 });
+
+        if (bottomPaddingBuffer) {
+          compositeInputs.push({ input: bottomPaddingBuffer, top: topPadding + point.height, left: 0 });
+        }
+
         imageBuffer = await sharp({
           create: {
             width: metadata.width,
@@ -435,11 +453,7 @@ async function splitImageByPoints(imagePath, cutPoints, outputDir, baseFilename)
             background: { r: 0, g: 0, b: 0, alpha: 0 }
           }
         })
-        .composite([
-          { input: topPaddingBuffer, top: 0, left: 0 },
-          { input: imageBuffer, top: topPadding, left: 0 },
-          { input: bottomPaddingBuffer, top: topPadding + point.height, left: 0 }
-        ])
+        .composite(compositeInputs)
         .png()
         .toBuffer();
       }
