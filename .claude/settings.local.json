@@ -41,7 +41,13 @@
       "Bash(if not exist \"D:\\game\\code\\convertTFT\\TFT\\.claude\\commands\" mkdir \"D:\\game\\code\\convertTFT\\TFT\\.claude\\commands\")",
       "Bash(TFT.md)",
       "Bash(del:*)",
-      "Bash(chcp 65001)"
+      "Bash(chcp 65001)",
+      "Bash(if not exist \".claude\" mkdir .claude)",
+      "Bash(/validate-terms)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(where:*)",
+      "Bash(\"C:\\Users\\LiHaoJing\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe\":*)"
     ],
     "deny": [],
     "ask": []
