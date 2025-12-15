@@ -47,7 +47,8 @@
       "Bash(python:*)",
       "Bash(python3:*)",
       "Bash(where:*)",
-      "Bash(\"C:\\Users\\LiHaoJing\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe\":*)"
+      "Bash(\"C:\\Users\\LiHaoJing\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe\":*)",
+      "Bash(powershell -Command:*)"
     ],
     "deny": [],
     "ask": []
