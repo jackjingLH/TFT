@@ -15,8 +15,8 @@
 - [ ] **标题层级**：仅使用一级（#）和二级（##）
 - [ ] **封面元数据正确添加**在文章开头
   - [ ] **tags** 字段存在且格式正确
+  - [ ] **cover** 字段存在且路径正确（必需,默认使用 output/TFT_full.png）
   - [ ] **backup** 字段存在且符合命名规范（英文小写，短横线连接）
-  - [ ] **cover** 字段（可选）路径正确
 
 ### 📊 内容质量检查
 - [ ] **数字格式统一**：`3星亚索` `4费英雄` `5比尔吉沃特`
@@ -48,6 +48,8 @@
 | 数字位置 | 亚索3星 | 3星亚索 |
 | 语言对照 | 绿甲（Spirit Visage） | 振奋盔甲 |
 | 空标题处理 | ## 🎯 强化符文<br>以下是推荐... | ## 🎯 强化符文<br>(空) |
+| **cover 缺失** | 缺少 cover 字段 | cover: output/TFT_full.png |
+| **cover 格式** | cover：image.png（全角冒号） | cover: image.png（半角冒号+空格） |
 | **backup 字段** | backup: 艾克科加斯 | backup: ekko-chogath |
 | **backup 格式** | backup: Ekko_Chogath | backup: ekko-chogath |
 | **backup 缺失** | 缺少 backup 字段 | 必须添加 backup 字段 |
