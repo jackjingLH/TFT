@@ -8,13 +8,13 @@
 ### 第1步:读取和分析
 首先读取以下文件以了解任务范围:
 - `TFT.txt` - 待处理的游戏攻略原文
-- `docs/zh_terms.csv` - 游戏术语标准对照表(前50行)
-- `translation-protocol.md` - 文本处理规范(仅读取关键部分)
+- `docs/terms/zh_terms.csv` - 游戏术语标准对照表(前50行)
+- `docs/protocols/translation-protocol.md` - 文本处理规范(仅读取关键部分)
 
 **注意**:仅读取文件,不执行任何处理
 
 ### 第2步:术语识别
-根据 `translation-protocol.md` 第3节"分层术语处理算法",识别原文中需要纠正的游戏术语:
+根据 `docs/protocols/translation-protocol.md` 第3节"分层术语处理算法",识别原文中需要纠正的游戏术语:
 - 英雄名称(如:卡莎、盖伦、波比)
 - 装备名称(如:洋刀→鬼索的狂暴之刃)
 - 羁绊名称(如:护卫、狙神、巨神)
@@ -34,13 +34,13 @@
 - 优化段落结构
 
 ### 第5步:输出文件
-按照 `translation-protocol.md` 第6节"输出协议"格式,生成:
-- `TFT_processed.md` - 完整处理记录(纠错记录+原文+规范文本)
+按照 `docs/protocols/translation-protocol.md` 第6节"输出协议"格式,生成:
+- `docs/protocols/TFT_processed.md` - 完整处理记录(纠错记录+原文+规范文本)
 - `TFT.md` - 仅规范化后的文本
 
 ## 执行方式
 **重要**:采用分步执行,每完成一步后等待确认再继续,避免一次性处理导致错误
 
 ## 相关文档
-- `translation-protocol.md` - 详细处理规范
-- `docs/zh_terms.csv` - 游戏术语标准对照表
+- `docs/protocols/translation-protocol.md` - 详细处理规范
+- `docs/terms/zh_terms.csv` - 游戏术语标准对照表
