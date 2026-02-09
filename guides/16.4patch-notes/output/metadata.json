@@ -1,7 +1,7 @@
 {
-  "mdFile": "D:\\code\\TFT\\TFT.md",
-  "outputDir": "D:\\code\\TFT\\output",
-  "fullImage": "D:\\code\\TFT\\output\\TFT_full.png",
+  "mdFile": "D:\\game\\code\\convertTFT\\TFT\\TFT.md",
+  "outputDir": "D:\\game\\code\\convertTFT\\TFT\\output",
+  "fullImage": "D:\\game\\code\\convertTFT\\TFT\\output\\TFT_full.png",
   "splitImages": [
     {
       "path": "D:\\game\\code\\convertTFT\\TFT\\output\\TFT_part1_of_9.png",
