@@ -12,7 +12,8 @@
       "Skill(validate-terms)",
       "Bash(tree:*)",
       "Bash(test:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:www.xfyun.cn)"
     ],
     "deny": [],
     "ask": []
