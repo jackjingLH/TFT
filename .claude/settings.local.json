@@ -11,7 +11,8 @@
       "WebFetch(domain:busy-ziconium-740.notion.site)",
       "Skill(validate-terms)",
       "Bash(tree:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
