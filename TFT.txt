@@ -1,9 +1,152 @@
-安倍砂旧是完美的塞拉斯旧物的下尾鸡蛋我们在什么情况下放弃塞拉斯旧物转而去完安倍砂旧的第一种情况就是我刚才说的
-外边有两三家同行而且你还没有经济海哥斯上旧之后估计还强不到牌此时
-你就要做下尾鸡蛋了就可以转成咱们这套安倍砂旧再更多的是第二种情况就是被别人打得生活不能治理了
-世界段的血量只剩下三四十点根本上不了九鸡的情况下
-那自然而然的你就要破脚去转为咱们这套安倍砂旧为什么安倍砂可以期待掉塞拉斯呢
-就是因为本次的版本更新把安倍砂对坦克的伤害增加了百分之四十
-就这一点伤害直接让安倍砂化成为坦克杀手
-而且还有一点更新可能被大家忽略的就是暂时会获得额外的移术提升
-这对安倍砂也是有提升的
+The official Teamfight Tactics Patch 16.5 will be released on February 19, 2026 (Thursday)
+Keep in mind this is only on PBE and may change in the future! I’ll update if there are any changes.
+
+Text
+Champion Changes
+Darius
+Decimate
+
+Heal: 315/463/717 → 345/523/857
+Dr. Mundo
+Maximum Dosage
+
+Heal per second: 114/177/275 → 114/187/315
+Jinx
+Switcheroo!
+
+Rocket damage: 54/81/134 → 58/88/159
+LeBlanc
+Distortions
+
+Primary damage: 300/450/700 → 300/450/800
+Secondary damage: 180/270/450 → 180/270/500
+Leona
+Solar Flare
+
+Damage reduction: 15/30/60 → 15/30/70
+Malzahar
+Void Swarm
+
+Voidling damage: 29/43/68 → 30/45/80
+Vayne
+Tumble
+
+True damage: 106/160/245 → 106/160/265
+Yunara
+Transcendent State
+
+Attack Speed: 65%/65%/300% → 80%/80%/300% (Bonus attack speed from abilities no longer scales with ability power)
+Laser damage: 80/120/425 → 90/135/475 (Ability damage now scales with ability power)
+Sejuani
+Winter’s Wrath
+
+Shield: 525/575/675 → 525/575/775
+Zoe
+Double Trouble Bubble
+
+Damage: 330/500/770 → 330/500/875
+Nasus
+Fury of the Sands
+
+Health steal: 485/620/3000 → 500/685/3000
+Swain
+Mana: 50/145 → 40/145
+Mel
+Radiant Eclipse
+
+Mana required for Radiant Item: 235 → 225
+T-Hex
+Mana: 30/100 → 10/80
+Hextech Arsenal
+
+Mana drain per second: 33 → 25
+Laser damage: 170/280/2150 → 370/555/2150
+Laser damage reduction per enemy: 35% → 70%
+Max laser reduction: 80% → 90%
+Missile damage: 34/56/430 → 37/56/215
+Aurelion Sol
+The Skies Descend
+
+Damage: 480/800/5000 → 525/725/5000
+Unlock Changes
+Sylas
+Requirement: Sell 2★ Jarvan IV + Sell 2★ Garen + Sell 2★ Lux → Sell 2★ Jarvan IV + Sell 2★ Garen + Reach Level 9
+Trait Changes
+Arcanist
+(2) Team AP: 18% → 15%
+
+(4) Team AP: 25% → 20%
+
+(6) Team AP: 40% → 35%
+
+(4) Arcanist bonus: 40% → 45%
+
+(6) Arcanist bonus: 60% → 65%
+
+Demacia
+(5) Armor and MR: 35 → 30
+(7) Armor and MR: 35 → 30
+Item Changes
+The Darkin Staff
+Ability Power: 40 → 35
+Mana Regen: 2 → 3
+Royal Husk
+Health: 200 → 200 + 10% max Health
+Augment Changes
+Best Friends I
+Allies isolated in pairs gain 10% Attack Speed and 10 15 Armor at the start of combat.
+Big Friend I
+Allies that start combat next to an ally with over 1750 Health gain 10% Durability. Gain a Giant's Belt.
+Dummify
+Lose all champions on your board and bench. Gain a Training Dummy with 80% of their combined health. The dummy gains 1200 1500 Health per stage. Gain a non-Tank 2-star 2-cost champion.
+Efficient Shopper
+For the next 4 carousels, gain a second copy of the champion taken. Gain 4 gold now.
+Focused Fire
+Your team gains 5% 10% Attack Damage. Every 5 seconds, they gain 5% more.
+Twin Guardians
+If you have exactly 2 allies in your first row, grant them 100 bonus Health, 50 Armor, and 50 Magic Resist.
+Best Friends II
+Allies isolated in pairs gain 15% Attack Speed and 18 25 Armor at the start of combat.
+Crash Test Dummies
+Gain 2 Training Dummies. Combat start: Your Training Dummies launch themselves towards a group of enemies and Stun them for 1.75 1.25 seconds.
+Crown’s Will
+Gain a Needlessly Large Rod and a Chain Vest. Your team gains 12 8 Ability Power and ~~10 ~~ 6 Armor.
+Golemify
+Lose all champions on your board and bench. Gain a Golem with 60% of their combined Health and 50% of their combined Attack Damage. The Golem gains 1000 1200 Health per stage. Gain a non-Tank 2-star 3-cost champion.
+Hefty Rolls
+Your team gains 9 Health and size for each time you've rolled this game. Gain 5 gold.
+Mace’s Will
+Gain a Sparring Gloves and a Giant's Belt. Your team gains 8% 6% Attack Speed and 20% 15% Critical Strike Chance.
+Spear’s Will
+Your team gains 12% 10% Attack Damage and 5 Mana. Gain a B.F. Sword and a Tear of the Goddess.
+Treasure Hunt
+Gain a locked chest each Stage between now and Stage 6. Unlock each chest when you spend 20 16 gold on Shop rerolls. These chests persist until opened.
+Warlord’s Honor
+Every round, your team gain 5% 6% Attack Damage and Ability Power. Champions start with 1 stack of this effect, and can stack up to 4 times.
+Component Heist
+After 4 player combats, gain 1 of every item component. Gain a random component now.
+Hard Commit
+Gain a random Emblem. Now and at the start of each Stage, gain a 1-star champion of that trait with a cost equal to the Stage (max 5) and 7 5 gold.
+Trials of Twilight II
+Gain 2 1 Xin Zhaos and a Bloodthirster. Xin Zhao becomes an Attack Fighter. After 5 player combats as a 3-star, unlock Zaahen.
+
+At the start of the next 3 2 stages, gain a Lesser Champion Duplicator.
+
+Earth Axiom
+Gain an Earth Hex. Champions within gain 30 40 Armor and Magic Resist. At 50% Health, they Stun enemies within 2 hexes for 1.5 2 seconds.
+Healing Orbs II
+When an enemy dies, the nearest ally is healed for 440 500.
+Promised Protection
+Gain a Protector's Vow. Protector's Vow grants its holder 18% 25% additional Mana from all sources.
+Secrets of the Sands
+Gain 6 10 gold. Gain an Azir on Stage 3-5. Each time you unlock a Shuriman, gain an ideal item for them.
+Tactician's Kitchen
+Gain a random Emblem. After 6 3 rounds, gain a Tactician's Cape.
+The World Runes
+Gain 2 Emblems from random Region traits. Gain 2 XP every player combat, increased to 4 6 XP if 4 or more Region traits are active.
+Ascension
+After 12 seconds of combat, gain 45% 40% Damage Amp.
+Aura Farming
+Gain a 2-star 5-cost champion holding a recommended item. You cannot field it until Stage 4-5 4-3.
+Max Build
+Gain 10 8 free Shop rerolls. On Stage 4-5 and 6-1 6-2, gain a Champion Duplicator.
