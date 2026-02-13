@@ -267,7 +267,16 @@ function saveAsTFT(guide) {
 
 // 命令行执行
 if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, '/')}`) {
-  const url = process.argv[2] || 'https://tftacademy.com/tierlist/comps/set-15-nine-thousand-volts-kennen';
+  const url = process.argv[2];
+
+  if (!url) {
+    console.error('\n❌ 错误: 缺少URL参数\n');
+    console.log('使用方法:');
+    console.log('  node scraper/fetchTftAcademyGuide.js <URL>\n');
+    console.log('示例:');
+    console.log('  node scraper/fetchTftAcademyGuide.js https://tftacademy.com/tierlist/comps/set-15-nine-thousand-volts-kennen\n');
+    process.exit(1);
+  }
 
   fetchGuide(url)
     .then(guide => {

@@ -175,7 +175,16 @@ function saveAsTFT(guide) {
 
 // 命令行执行
 if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, '/')}`) {
-  const url = process.argv[2] || 'https://tftips.app/comps/prodigy-yuumi';
+  const url = process.argv[2];
+
+  if (!url) {
+    console.error('\n❌ 错误: 缺少URL参数\n');
+    console.log('使用方法:');
+    console.log('  node scraper/fetchTftipsGuide.js <URL>\n');
+    console.log('示例:');
+    console.log('  node scraper/fetchTftipsGuide.js https://tftips.app/comps/prodigy-yuumi\n');
+    process.exit(1);
+  }
 
   console.log(`📍 URL: ${url}\n`);
 
