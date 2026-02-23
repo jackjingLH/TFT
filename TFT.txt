@@ -1,7 +1,7 @@
-tips: Cheaper variation of Bel'Veth Slayers. Play when you have damage Void mutation for Bel'Veth and you hit Shyvana.
-Stage 2:Ideally have win streak opener with Qiyana 2 > Briar 2 holding items. You can play for Ixtal or Bilgewater for resources as well.
-Stage 3:If win streaking, maintain tempo and keep slamming items aggressively. Use Bilgewater shops to get free upgrades.
-Stage 4:Level to 8 and roll for Bel'Veth 2 + Ambessa + frontline. Take a combat augment if you can. Flex your remaining spots. Don't rush to play Aatrox 1 if he doesn't fit.
+tips: Play only with Double Trouble. Nautilus 3 > Loris 3 as your tank priority, but itemize whoever you're hitting more of. Void mutations: Leeching Nucleus > Spitter Spines >>> Adrenaline Modules.
+Stage 2:Play around any AP opener that can hold Malzahar items. It doesn't matter much as long as you are win streaking with good econ.
+Stage 3:Econ up and keep streak. Many times, upgrading a unit and losing Double Trouble value can make you weaker. So consider rolling for a 4th copy or buy after combat starts.
+Stage 4:Level to 7 and slow roll for Malzahar 3, Nautilus 3, and other Double Trouble units. Utility items on Seraphine.
 
 Alt Builds:
 Augments:

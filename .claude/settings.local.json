@@ -30,7 +30,9 @@
       "Bash(\"C:\\\\Users\\\\jinglihao\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python311\\\\Scripts\\\\whisper.exe\" --help)",
       "Bash(\"C:\\\\Users\\\\jinglihao\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python311\\\\python.exe\" -m whisper --version)",
       "Bash(echo:*)",
-      "Skill(normalize)"
+      "Skill(normalize)",
+      "Skill(translate-guide)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
