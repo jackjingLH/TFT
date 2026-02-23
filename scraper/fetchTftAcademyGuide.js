@@ -193,7 +193,10 @@ async function fetchGuide(url) {
     console.log(`  ✓ 添加 ${sectionTitles.length} 个固定章节标题\n`);
 
     // 10. 保存JSON数据
-    const jsonPath = path.join(__dirname, CONFIG.outputDir, `${compName}_guide.json`);
+    const outputDir = path.join(__dirname, CONFIG.outputDir);
+    fs.mkdirSync(outputDir, { recursive: true });
+
+    const jsonPath = path.join(outputDir, `${compName}_guide.json`);
     fs.writeFileSync(jsonPath, JSON.stringify(guide, null, 2), 'utf-8');
     console.log(`💾 数据已保存: ${jsonPath}\n`);
 
