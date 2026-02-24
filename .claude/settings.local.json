@@ -32,7 +32,8 @@
       "Bash(echo:*)",
       "Skill(normalize)",
       "Skill(translate-guide)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "WebFetch(domain:tftacademy.com)"
     ],
     "deny": [],
     "ask": []
