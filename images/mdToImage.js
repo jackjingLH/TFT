@@ -48,37 +48,13 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-size: ${CONFIG.fontSize};
     line-height: ${CONFIG.lineHeight};
 
-    /* 简化背景设计：纯净渐变 + 微妙纹理 */
-    background:
-      /* 单层纹理：细微的点状图案 */
-      radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 1px),
-
-      /* 底层渐变：主色调渐变 */
-      linear-gradient(135deg,
-        #1a1f2e 0%,    /* 深蓝灰 */
-        #1e2535 30%,   /* 中蓝灰 */
-        #1f1f2e 60%,   /* 带紫色调的深灰 */
-        #1a1f28 90%,   /* 青灰色 */
-        #181825 100%   /* 深灰蓝 */
-      ),
-
-      /* 基础背景色 */
-      #1e1e1e;
-
-    /* 背景图案尺寸设置 */
-    background-size:
-      30px 30px,    /* 点状图案尺寸，更稀疏 */
-      100% 100%,    /* 渐变覆盖整个区域 */
-      100% 100%;    /* 基础色覆盖整个区域 */
-
-    background-attachment: fixed;
-    color: #d4d4d4;  /* VSCode 文本颜色 */
-
-    /* 添加微妙的边框装饰 */
+    /* Cyberpunk 深蓝背景，与网页端一致 */
+    background: linear-gradient(135deg, #0F0F23 0%, #111827 50%, #0F0F23 100%);
+    color: #d4d4d4;
     position: relative;
   }
 
-  /* 页面顶部和底部的装饰线条 */
+  /* 顶部紫→玫红装饰线（对应网页端阅读进度条） */
   body::before {
     content: '';
     position: fixed;
@@ -86,278 +62,188 @@ function generateCSS(h1BackgroundImagePath = '') {
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(78, 201, 176, 0.3) 20%,
-      rgba(78, 201, 176, 0.8) 50%,
-      rgba(78, 201, 176, 0.3) 80%,
-      transparent 100%
-    );
+    background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 50%, #F43F5E 100%);
     z-index: 10;
   }
 
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(86, 156, 214, 0.3) 15%,
-      rgba(86, 156, 214, 0.6) 50%,
-      rgba(86, 156, 214, 0.3) 85%,
-      transparent 100%
-    );
-    z-index: 10;
-  }
-
-  /* 一级标题容器 - 用于包裹副标题和主标题 */
+  /* 一级标题容器 */
   .h1-container {
     margin: 0;
-    padding: 92px 33px 92px 33px;  /* 上下边距：92px（原110px），左右：33px（原40px）*/
-
-    /* 增强的背景设计 */
+    padding: 92px 33px 92px 33px;
     position: relative;
 
-    /* 使用图片作为背景（如果配置了的话）*/
     ${h1BackgroundImagePath ? `
     background-image:
-      /* 增强的渐变遮罩（加深处理） */
       linear-gradient(135deg,
         rgba(0, 0, 0, 0.85) 0%,
-        rgba(0, 0, 0, 0.75) 50%,
+        rgba(15, 15, 35, 0.75) 50%,
         rgba(0, 0, 0, 0.8) 100%
       ),
-      /* 装饰性纹理层 */
-      radial-gradient(circle at 20% 50%, rgba(78, 201, 176, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(86, 156, 214, 0.1) 0%, transparent 50%),
-      /* 主背景图 */
+      radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.08) 0%, transparent 50%),
       url('${h1BackgroundImagePath}');
     background-size: cover, cover, cover, cover;
     background-position: center, center, center, center;
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-
-    /* 添加微妙的内边框 */
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
     ` : `
-    /* 增强的渐变背景（无背景图时使用）*/
-    background:
-      /* 装饰性光效 */
-      radial-gradient(circle at 15% 30%, rgba(78, 201, 176, 0.15) 0%, transparent 40%),
-      radial-gradient(circle at 85% 70%, rgba(86, 156, 214, 0.12) 0%, transparent 45%),
-      /* 主渐变 */
-      linear-gradient(135deg,
-        #1a3a52 0%,
-        #2d5a6f 30%,
-        #1e4d5c 60%,
-        #1a3a52 100%
-      ),
-      /* 底色 */
-      #1a3a52;
-
-    /* 添加微妙的纹理 */
-    background-image:
-      radial-gradient(circle at 15% 30%, rgba(78, 201, 176, 0.15) 0%, transparent 40%),
-      radial-gradient(circle at 85% 70%, rgba(86, 156, 214, 0.12) 0%, transparent 45%),
-      linear-gradient(135deg, #1a3a52 0%, #2d5a6f 30%, #1e4d5c 60%, #1a3a52 100%),
-      #1a3a52;
-    background-size: 200% 200%, 180% 180%, 100% 100%, 100% 100%;
-
-    /* 添加微妙的内边框和阴影 */
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    /* 无背景图时：深紫色调渐变 */
+    background: linear-gradient(135deg,
+      rgba(124, 58, 237, 0.08) 0%,
+      rgba(15, 15, 35, 0.95) 40%,
+      rgba(15, 15, 35, 0.95) 60%,
+      rgba(124, 58, 237, 0.05) 100%
+    );
     `}
 
-    /* 标题区域底部分割线 */
-    border-bottom: 2px solid transparent;
-    border-image: linear-gradient(90deg,
-      transparent 0%,
-      rgba(78, 201, 176, 0.5) 20%,
-      rgba(78, 201, 176, 0.8) 50%,
-      rgba(78, 201, 176, 0.5) 80%,
-      transparent 100%
-    ) 1;
+    /* 标题区域底部分割线 - 紫色 */
+    border-bottom: 2px solid rgba(124, 58, 237, 0.3);
   }
 
-  /* 标签容器 - 一级标题上方的标签组 */
+  /* 标签容器 */
   .tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 17px;           /* 标签之间的间距 */
-    margin: 0 0 16px 0;  /* 下方留16px间距 */
+    gap: 17px;
+    margin: 0 0 16px 0;
     align-items: center;
   }
 
-  /* 单个标签样式 */
+  /* 单个标签 - 玫红色系（与网页端一致） */
   .tag {
     display: inline-block;
-    font-size: 32px;     /* 与正文相同大小 */
-    font-weight: 600;    /* 半粗体 */
-    line-height: 1.2;    /* 覆盖全局line-height 2.1，使标签更紧凑 */
-    color: #1a1a1a;      /* 深色文字，对比度更高 */
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #ffffff;
     background: linear-gradient(135deg,
-      rgba(255, 193, 7, 0.95) 0%,
-      rgba(255, 152, 0, 0.95) 100%
+      rgba(244, 63, 94, 0.85) 0%,
+      rgba(225, 29, 72, 0.85) 100%
     );
-    padding: 2px 15px;   /* 上下2px，左右15px */
-    border-radius: 16px; /* 圆角胶囊设计 */
-    border: 2px solid rgba(255, 193, 7, 1);  /* 金黄色边框 */
-    letter-spacing: 1px; /* 字间距 */
-    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4);   /* 金色发光效果 */
-    transition: all 0.3s ease;
-    vertical-align: middle; /* 垂直居中对齐 */
+    padding: 2px 15px;
+    border-radius: 16px;
+    border: 1px solid rgba(244, 63, 94, 0.6);
+    letter-spacing: 1px;
+    box-shadow: 0 3px 10px rgba(244, 63, 94, 0.3);
+    vertical-align: middle;
   }
 
-  /* 一级标题 - 封面级别设计（带背景图） */
+  /* 一级标题 */
   h1 {
-    font-size: 108px;    /* 大标题字体 */
-    font-weight: 900;    /* 特粗体 */
+    font-size: 108px;
+    font-weight: 900;
     margin: 0;
-    padding: 0;          /* 移除内边距，由容器控制 */
-    color: #ffffff;      /* 纯白色，更醒目 */
-    text-align: left;    /* 左对齐 */
-    letter-spacing: 5px; /* 字间距 */
-    line-height: 1.3;    /* 行间距 */
-    background: none;    /* 移除背景，由容器控制 */
+    padding: 0;
+    color: #ffffff;
+    text-align: left;
+    letter-spacing: 2px;
+    line-height: 1.3;
+    text-shadow: 0 0 30px rgba(167, 139, 250, 0.2);
+    background: none;
   }
 
-  /* 二级标题 - 内容区域 */
+  /* 二级标题 - 霓虹紫（与网页端完全一致） */
   h2 {
-    font-size: 37px;     /* 超大二级标题（原44px → 37px）*/
+    font-size: 37px;
     font-weight: bold;
-    margin: 23px 0 13px 0;  /* 原28px 0 16px 0 → 23px 0 13px 0 */
-    padding: 0 33px;     /* 左右内边距（原40px → 33px）*/
-    color: #4ec9b0;
-
-    /* 添加微妙的背景装饰 */
+    margin: 23px 0 13px 0;
+    padding: 8px 33px 8px 29px;
+    color: #A78BFA;
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.08) 0%, transparent 100%);
+    border-left: 4px solid #7C3AED;
+    border-top: 1px solid rgba(124, 58, 237, 0.1);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    box-shadow: -4px 0 12px rgba(124, 58, 237, 0.2);
     position: relative;
-    background: linear-gradient(90deg,
-      rgba(78, 201, 176, 0.05) 0%,
-      rgba(78, 201, 176, 0.02) 50%,
-      rgba(78, 201, 176, 0.05) 100%
-    );
-
-    /* 左侧装饰条 */
-    border-left: 4px solid #4ec9b0;
-    padding-left: 29px;  /* 调整内边距，保持文字位置 */
-
-    /* 微妙的顶部和底部边框 */
-    border-top: 1px solid rgba(78, 201, 176, 0.1);
-    border-bottom: 1px solid rgba(78, 201, 176, 0.1);
-    padding-top: 8px;
-    padding-bottom: 8px;
   }
 
   /* 三级标题 */
   h3 {
-    font-size: 30px;     /* 大三级标题（原36px → 30px）*/
+    font-size: 30px;
     font-weight: bold;
-    margin: 20px 0 12px 0;  /* 原24px 0 14px 0 → 20px 0 12px 0 */
-    padding: 0 33px;     /* 原40px → 33px */
-    color: #4ec9b0;
-
-    /* 微妙的背景装饰 */
-    background: linear-gradient(90deg,
-      rgba(86, 156, 214, 0.03) 0%,
-      transparent 50%,
-      rgba(86, 156, 214, 0.03) 100%
-    );
-
-    /* 左侧装饰条（更细一些） */
-    border-left: 3px solid #569cd6;
-    padding-left: 30px;  /* 调整内边距 */
-    padding-top: 4px;
-    padding-bottom: 4px;
+    margin: 20px 0 12px 0;
+    padding: 4px 33px 4px 30px;
+    color: #A78BFA;
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.05) 0%, transparent 60%);
+    border-left: 3px solid #6D28D9;
   }
 
-  /* 段落 - 添加左右内边距 */
+  /* 段落 */
   p {
-    margin: 13px 0;      /* 原16px 0 → 13px 0 */
-    padding: 0 33px;     /* 原40px → 33px */
+    margin: 13px 0;
+    padding: 0 33px;
     color: #d4d4d4;
   }
 
-  /* 列表 - 添加左右内边距 */
+  /* 列表 */
   ul, ol {
-    margin: 13px 0;      /* 原16px 0 → 13px 0 */
-    padding-left: 63px;  /* 左侧缩进 + 内容区域内边距（原75px → 63px）*/
-    padding-right: 33px; /* 原40px → 33px */
+    margin: 13px 0;
+    padding-left: 63px;
+    padding-right: 33px;
     color: #d4d4d4;
   }
 
   li {
-    margin: 12px 0;      /* 更大列表项间距（原14px → 12px）*/
+    margin: 12px 0;
     line-height: 2.1;
   }
 
+  /* 行内代码 - 玫粉色文字 + 深紫背景 */
   code {
-    background: linear-gradient(135deg,
-      rgba(45, 45, 48, 0.9) 0%,
-      rgba(35, 35, 38, 0.9) 100%
-    );
-    color: #ce9178;  /* VSCode 字符串颜色 */
+    background: rgba(30, 27, 75, 0.9);
+    color: #F9A8D4;
     padding: 2px 6px;
-    border-radius: 3px;
+    border-radius: 4px;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-
-    /* 微妙的内阴影 */
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
-
-    /* 细微的边框 */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.3);
   }
 
+  /* 代码块 - 顶部紫色边框 + neon 阴影 */
   pre {
-    background: linear-gradient(135deg,
-      rgba(45, 45, 48, 0.95) 0%,
-      rgba(35, 35, 38, 0.95) 100%
-    );
+    background: rgba(15, 15, 35, 0.95);
     padding: 15px;
     border-radius: 8px;
     overflow-x: auto;
-    border: 1px solid rgba(78, 201, 176, 0.2);
-
-    /* 简化背景：仅保留渐变 */
-    background-image:
-      linear-gradient(135deg, rgba(45, 45, 48, 0.95) 0%, rgba(35, 35, 38, 0.95) 100%);
-
-    /* 内阴影和外发光 */
-    box-shadow:
-      inset 0 1px 3px rgba(0, 0, 0, 0.3),
-      0 0 8px rgba(78, 201, 176, 0.1);
+    border-top: 2px solid #7C3AED;
+    border-left: 1px solid rgba(124, 58, 237, 0.3);
+    border-right: 1px solid rgba(124, 58, 237, 0.3);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+    box-shadow: 0 -2px 12px rgba(124, 58, 237, 0.2);
   }
 
   pre code {
-    background-color: transparent;
+    background: transparent;
     padding: 0;
     color: #d4d4d4;
+    border: none;
   }
 
+  /* 引用块 - 紫色边框 + 半透明紫色背景 */
   blockquote {
-    border-left: 4px solid #007acc;  /* VSCode 蓝色强调色 */
-    margin: 15px 0;
-    padding-left: 20px;
-    color: #9cdcfe;  /* VSCode 注释颜色 */
-    background-color: rgba(0, 122, 204, 0.1);
+    border-left: 4px solid #7C3AED;
+    margin: 15px 33px;
     padding: 10px 10px 10px 20px;
-    border-radius: 3px;
-  }
-
-  strong {
-    color: #569cd6;  /* VSCode 关键字蓝色 */
-    font-weight: bold;
-  }
-
-  em {
-    color: #dcdcaa;  /* VSCode 黄色 */
+    color: #C4B5FD;
+    background: rgba(124, 58, 237, 0.08);
+    border-radius: 4px;
     font-style: italic;
   }
 
+  /* 粗体 - 浅紫色 */
+  strong {
+    color: #C4B5FD;
+    font-weight: bold;
+  }
+
+  /* 斜体 - 玫粉色 */
+  em {
+    color: #F9A8D4;
+    font-style: italic;
+  }
+
+  /* 链接 - 紫色 */
   a {
-    color: #3794ff;  /* VSCode 链接颜色 */
+    color: #A78BFA;
     text-decoration: none;
   }
 
@@ -365,12 +251,12 @@ function generateCSS(h1BackgroundImagePath = '') {
     text-decoration: underline;
   }
 
-  /* 图片样式 - 限制最大宽度，防止图片撑开容器 */
+  /* 图片 */
   img {
-    max-width: calc(100% - 66px);  /* 减去左右内边距（原80px → 66px）*/
+    max-width: calc(100% - 66px);
     height: auto;
     display: block;
-    margin: 21px 33px;    /* 上下间距 + 左右内边距（原25px 40px → 21px 33px）*/
+    margin: 21px 33px;
     border-radius: 8px;
   }
 
@@ -379,53 +265,39 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   }
 
-  /* 表格样式 */
+  /* 表格 - 深蓝背景 + 紫色边框 */
   table {
-    width: calc(100% - 66px);  /* 减去左右内边距（原80px → 66px）*/
-    margin: 21px 33px;     /* 原25px 40px → 21px 33px */
+    width: calc(100% - 66px);
+    margin: 21px 33px;
     border-collapse: collapse;
-
-    /* 表格背景：多层渐变 */
-    background: linear-gradient(135deg,
-      rgba(45, 45, 48, 0.9) 0%,
-      rgba(35, 35, 38, 0.9) 100%
-    );
-
-    /* 表格边框和阴影 */
-    border: 1px solid rgba(78, 201, 176, 0.3);
+    background: rgba(22, 33, 62, 0.9);
+    border: 1px solid rgba(55, 48, 163, 0.5);
     border-radius: 12px;
     overflow: hidden;
     box-shadow:
-      0 4px 8px rgba(0, 0, 0, 0.2),
-      0 0 16px rgba(78, 201, 176, 0.1);
+      0 4px 8px rgba(0, 0, 0, 0.3),
+      0 0 16px rgba(124, 58, 237, 0.1);
   }
 
   thead {
-    /* 表头渐变背景 */
-    background: linear-gradient(135deg,
-      rgba(30, 30, 30, 0.95) 0%,
-      rgba(26, 26, 26, 0.95) 100%
-    );
-
-    /* 表头装饰 */
-    border-bottom: 2px solid #4ec9b0;
-    position: relative;
+    background: rgba(30, 27, 75, 0.95);
+    border-bottom: 2px solid #7C3AED;
   }
 
   th {
-    padding: 13px 17px;    /* 原16px 20px → 13px 17px */
+    padding: 13px 17px;
     text-align: left;
     font-weight: bold;
-    color: #4ec9b0;
-    border-bottom: 2px solid #007acc;
-    font-size: 25px;       /* 原30px → 25px */
+    color: #A78BFA;
+    border-bottom: 2px solid #7C3AED;
+    font-size: 25px;
   }
 
   td {
-    padding: 12px 17px;    /* 原14px 20px → 12px 17px */
+    padding: 12px 17px;
     color: #d4d4d4;
-    border-bottom: 1px solid #3c3c3c;
-    font-size: 23px;       /* 原28px → 23px */
+    border-bottom: 1px solid rgba(55, 48, 163, 0.3);
+    font-size: 23px;
   }
 
   tr:last-child td {
@@ -433,22 +305,22 @@ function generateCSS(h1BackgroundImagePath = '') {
   }
 
   tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(124, 58, 237, 0.05);
   }
 
   /* 表格内的代码 */
   table code {
-    font-size: 22px;       /* 原26px → 22px */
+    font-size: 22px;
   }
 
-  /* 封面图片 - 在h1-container内的封面图 */
+  /* 封面图 */
   .cover-image {
-    max-width: 100%;       /* 占满容器宽度 */
+    max-width: 100%;
     height: auto;
     display: block;
-    margin: 33px 0 0 0;    /* 与标题保持间距 */
-    border-radius: 12px;   /* 圆角 */
-    padding: 0;            /* 去除内边距 */
+    margin: 33px 0 0 0;
+    border-radius: 12px;
+    padding: 0;
   }
 `;
 }
