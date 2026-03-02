@@ -33,7 +33,8 @@
       "Skill(normalize)",
       "Skill(translate-guide)",
       "Bash(mkdir:*)",
-      "WebFetch(domain:tftacademy.com)"
+      "WebFetch(domain:tftacademy.com)",
+      "WebFetch(domain:docs.excalidraw.com)"
     ],
     "deny": [],
     "ask": []
