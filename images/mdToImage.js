@@ -41,223 +41,248 @@ const CONFIG = {
 // 生成CSS样式的函数（支持动态背景图路径）
 function generateCSS(h1BackgroundImagePath = '') {
   return `
+  /* ── 调色板 ──────────────────────────────────────
+     背景:   #0D1117 (深碳黑)
+     正文:   #C9D1D9 (暖灰白)
+     强调色: #F59E0B (琥珀金) ← TFT 金币主题色
+     次强调: #FCD34D (浅金)
+     代码:   #7DD3FC (天蓝)
+     标签:   #F43F5E (玫红)
+  ─────────────────────────────────────────────── */
+
   body {
     margin: 0;
     padding: 0;
     font-family: ${CONFIG.fontFamily};
     font-size: ${CONFIG.fontSize};
     line-height: ${CONFIG.lineHeight};
-
-    /* Cyberpunk 深蓝背景，与网页端一致 */
-    background: linear-gradient(135deg, #0F0F23 0%, #111827 50%, #0F0F23 100%);
-    color: #d4d4d4;
+    background: #0D1117;
+    color: #C9D1D9;
     position: relative;
   }
 
-  /* 顶部紫→玫红装饰线（对应网页端阅读进度条） */
+  /* 顶部金→玫红装饰线 */
   body::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 50%, #F43F5E 100%);
+    height: 4px;
+    background: linear-gradient(90deg, #F59E0B 0%, #FCD34D 50%, #F43F5E 100%);
     z-index: 10;
   }
 
-  /* 一级标题容器 */
+  /* ── 一级标题容器 ─────────────────────────────── */
   .h1-container {
     margin: 0;
-    padding: 92px 33px 92px 33px;
+    padding: 88px 40px 80px 40px;
     position: relative;
 
     ${h1BackgroundImagePath ? `
     background-image:
-      linear-gradient(135deg,
-        rgba(0, 0, 0, 0.85) 0%,
-        rgba(15, 15, 35, 0.75) 50%,
-        rgba(0, 0, 0, 0.8) 100%
+      linear-gradient(160deg,
+        rgba(0, 0, 0, 0.82) 0%,
+        rgba(13, 17, 23, 0.72) 50%,
+        rgba(0, 0, 0, 0.78) 100%
       ),
-      radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 15% 50%, rgba(245, 158, 11, 0.12) 0%, transparent 55%),
+      radial-gradient(circle at 85% 20%, rgba(252, 211, 77, 0.06) 0%, transparent 50%),
       url('${h1BackgroundImagePath}');
     background-size: cover, cover, cover, cover;
     background-position: center, center, center, center;
     background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.4);
     ` : `
-    /* 无背景图时：深紫色调渐变 */
-    background: linear-gradient(135deg,
-      rgba(124, 58, 237, 0.08) 0%,
-      rgba(15, 15, 35, 0.95) 40%,
-      rgba(15, 15, 35, 0.95) 60%,
-      rgba(124, 58, 237, 0.05) 100%
+    background: linear-gradient(160deg,
+      rgba(245, 158, 11, 0.06) 0%,
+      rgba(13, 17, 23, 0.98) 35%,
+      rgba(13, 17, 23, 0.98) 65%,
+      rgba(245, 158, 11, 0.04) 100%
     );
     `}
 
-    /* 标题区域底部分割线 - 紫色 */
-    border-bottom: 2px solid rgba(124, 58, 237, 0.3);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.25);
   }
 
-  /* 标签容器 */
+  /* ── 标签 ─────────────────────────────────────── */
   .tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 17px;
-    margin: 0 0 16px 0;
+    gap: 14px;
+    margin: 0 0 20px 0;
     align-items: center;
   }
 
-  /* 单个标签 - 玫红色系（与网页端一致） */
   .tag {
     display: inline-block;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 600;
     line-height: 1.2;
     color: #ffffff;
     background: linear-gradient(135deg,
-      rgba(244, 63, 94, 0.85) 0%,
-      rgba(225, 29, 72, 0.85) 100%
+      rgba(244, 63, 94, 0.9) 0%,
+      rgba(220, 38, 38, 0.9) 100%
     );
-    padding: 2px 15px;
-    border-radius: 16px;
-    border: 1px solid rgba(244, 63, 94, 0.6);
-    letter-spacing: 1px;
-    box-shadow: 0 3px 10px rgba(244, 63, 94, 0.3);
+    padding: 3px 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(244, 63, 94, 0.5);
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(244, 63, 94, 0.25);
     vertical-align: middle;
   }
 
-  /* 一级标题 */
+  /* ── 一级标题 ─────────────────────────────────── */
   h1 {
-    font-size: 108px;
+    font-size: 100px;
     font-weight: 900;
     margin: 0;
     padding: 0;
-    color: #ffffff;
+    color: #FFFFFF;
     text-align: left;
-    letter-spacing: 2px;
-    line-height: 1.3;
-    text-shadow: 0 0 30px rgba(167, 139, 250, 0.2);
+    letter-spacing: 1px;
+    line-height: 1.25;
+    /* 金色微光，比紫色柔和得多 */
+    text-shadow: 0 2px 20px rgba(245, 158, 11, 0.15);
     background: none;
   }
 
-  /* 二级标题 - 霓虹紫（与网页端完全一致） */
+  /* ── 二级标题 — 琥珀金左边框 ────────────── */
   h2 {
-    font-size: 37px;
-    font-weight: bold;
-    margin: 23px 0 13px 0;
-    padding: 8px 33px 8px 29px;
-    color: #A78BFA;
-    background: linear-gradient(90deg, rgba(124, 58, 237, 0.08) 0%, transparent 100%);
-    border-left: 4px solid #7C3AED;
-    border-top: 1px solid rgba(124, 58, 237, 0.1);
-    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
-    box-shadow: -4px 0 12px rgba(124, 58, 237, 0.2);
+    font-size: 38px;
+    font-weight: 800;
+    margin: 28px 0 14px 0;
+    padding: 10px 40px 10px 32px;
+    color: #FBBF24;
+    background: linear-gradient(90deg,
+      rgba(245, 158, 11, 0.10) 0%,
+      rgba(245, 158, 11, 0.03) 60%,
+      transparent 100%
+    );
+    border-left: 4px solid #F59E0B;
+    border-radius: 0 6px 6px 0;
     position: relative;
   }
 
-  /* 三级标题 */
+  /* ── 三级标题 — 浅金，层级明确 ─────────────────── */
   h3 {
-    font-size: 30px;
-    font-weight: bold;
-    margin: 20px 0 12px 0;
-    padding: 4px 33px 4px 30px;
-    color: #A78BFA;
-    background: linear-gradient(90deg, rgba(124, 58, 237, 0.05) 0%, transparent 60%);
-    border-left: 3px solid #6D28D9;
+    font-size: 31px;
+    font-weight: 700;
+    margin: 22px 0 12px 0;
+    padding: 5px 40px 5px 36px;
+    color: #D4A017;
+    background: linear-gradient(90deg,
+      rgba(245, 158, 11, 0.06) 0%,
+      transparent 70%
+    );
+    border-left: 3px solid rgba(245, 158, 11, 0.5);
+    border-radius: 0 4px 4px 0;
   }
 
-  /* 段落 */
+  /* ── 段落 ─────────────────────────────────────── */
   p {
-    margin: 13px 0;
-    padding: 0 33px;
-    color: #d4d4d4;
+    margin: 14px 0;
+    padding: 0 40px;
+    color: #C9D1D9;
   }
 
-  /* 列表 */
+  /* ── 列表 ─────────────────────────────────────── */
   ul, ol {
-    margin: 13px 0;
-    padding-left: 63px;
-    padding-right: 33px;
-    color: #d4d4d4;
+    margin: 14px 0;
+    padding-left: 70px;
+    padding-right: 40px;
+    color: #C9D1D9;
   }
 
   li {
-    margin: 12px 0;
-    line-height: 2.1;
+    margin: 11px 0;
+    line-height: 2.0;
   }
 
-  /* 行内代码 - 玫粉色文字 + 深紫背景 */
+  /* 列表标记用金色 */
+  ul li::marker {
+    color: #F59E0B;
+  }
+  ol li::marker {
+    color: #F59E0B;
+    font-weight: 700;
+  }
+
+  /* ── 粗体 — 近白，不再用颜色干扰阅读 ───────────── */
+  strong {
+    color: #F1F5F9;
+    font-weight: 700;
+  }
+
+  /* ── 斜体 — 淡金，轻柔区分 ─────────────────────── */
+  em {
+    color: #FDE68A;
+    font-style: italic;
+  }
+
+  /* ── 行内代码 — 天蓝色，视觉区分清晰 ──────────── */
   code {
-    background: rgba(30, 27, 75, 0.9);
-    color: #F9A8D4;
-    padding: 2px 6px;
-    border-radius: 4px;
+    background: rgba(14, 116, 144, 0.18);
+    color: #7DD3FC;
+    padding: 2px 8px;
+    border-radius: 5px;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    border: 1px solid rgba(124, 58, 237, 0.3);
+    font-size: 0.88em;
+    border: 1px solid rgba(125, 211, 252, 0.2);
   }
 
-  /* 代码块 - 顶部紫色边框 + neon 阴影 */
+  /* ── 代码块 — 顶部金色线 ────────────────────────── */
   pre {
-    background: rgba(15, 15, 35, 0.95);
-    padding: 15px;
-    border-radius: 8px;
+    background: #161B22;
+    margin: 16px 40px;
+    padding: 20px 24px;
+    border-radius: 10px;
     overflow-x: auto;
-    border-top: 2px solid #7C3AED;
-    border-left: 1px solid rgba(124, 58, 237, 0.3);
-    border-right: 1px solid rgba(124, 58, 237, 0.3);
-    border-bottom: 1px solid rgba(124, 58, 237, 0.3);
-    box-shadow: 0 -2px 12px rgba(124, 58, 237, 0.2);
+    border: 1px solid rgba(48, 54, 61, 0.8);
+    border-top: 2px solid #F59E0B;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   }
 
   pre code {
     background: transparent;
     padding: 0;
-    color: #d4d4d4;
+    color: #C9D1D9;
     border: none;
+    font-size: ${CONFIG.fontSize};
   }
 
-  /* 引用块 - 紫色边框 + 半透明紫色背景 */
+  /* ── 引用块 — 金色左线 + 低饱和背景 ────────────── */
+  /* ── 引用块 — 无边线，斜体灰色正文 ─────────────── */
   blockquote {
-    border-left: 4px solid #7C3AED;
-    margin: 15px 33px;
-    padding: 10px 10px 10px 20px;
-    color: #C4B5FD;
-    background: rgba(124, 58, 237, 0.08);
-    border-radius: 4px;
+    margin: 18px 40px;
+    padding: 10px 24px;
+    color: #808080;
+    background: none;
     font-style: italic;
   }
 
-  /* 粗体 - 浅紫色 */
-  strong {
-    color: #C4B5FD;
-    font-weight: bold;
-  }
-
-  /* 斜体 - 玫粉色 */
-  em {
-    color: #F9A8D4;
-    font-style: italic;
-  }
-
-  /* 链接 - 紫色 */
+  /* ── 链接 — 柔和蓝，避免与金色强调混淆 ─────────── */
   a {
-    color: #A78BFA;
+    color: #60A5FA;
     text-decoration: none;
+    border-bottom: 1px solid rgba(96, 165, 250, 0.3);
   }
 
-  a:hover {
-    text-decoration: underline;
+  /* ── 分割线 ────────────────────────────────────── */
+  hr {
+    border: none;
+    border-top: 1px solid rgba(245, 158, 11, 0.2);
+    margin: 28px 40px;
   }
 
-  /* 图片 */
+  /* ── 图片 ────────────────────────────────────── */
   img {
-    max-width: calc(100% - 66px);
+    max-width: calc(100% - 80px);
     height: auto;
     display: block;
-    margin: 21px 33px;
-    border-radius: 8px;
+    margin: 22px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
   /* Emoji 支持 */
@@ -265,47 +290,46 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   }
 
-  /* 表格 - 深蓝背景 + 紫色边框 */
+  /* ── 表格 — 深碳背景 + 金色表头 ─────────────────── */
   table {
-    width: calc(100% - 66px);
-    margin: 21px 33px;
+    width: calc(100% - 80px);
+    margin: 22px 40px;
     border-collapse: collapse;
-    background: rgba(22, 33, 62, 0.9);
-    border: 1px solid rgba(55, 48, 163, 0.5);
+    background: #161B22;
+    border: 1px solid rgba(48, 54, 61, 0.9);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow:
-      0 4px 8px rgba(0, 0, 0, 0.3),
-      0 0 16px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   }
 
   thead {
-    background: rgba(30, 27, 75, 0.95);
-    border-bottom: 2px solid #7C3AED;
+    background: rgba(245, 158, 11, 0.10);
+    border-bottom: 2px solid #F59E0B;
   }
 
   th {
-    padding: 13px 17px;
+    padding: 14px 20px;
     text-align: left;
-    font-weight: bold;
-    color: #A78BFA;
-    border-bottom: 2px solid #7C3AED;
-    font-size: 25px;
+    font-weight: 700;
+    color: #FBBF24;
+    border-bottom: 2px solid #F59E0B;
+    font-size: 26px;
+    letter-spacing: 0.5px;
   }
 
   td {
-    padding: 12px 17px;
-    color: #d4d4d4;
-    border-bottom: 1px solid rgba(55, 48, 163, 0.3);
-    font-size: 23px;
+    padding: 13px 20px;
+    color: #C9D1D9;
+    border-bottom: 1px solid rgba(48, 54, 61, 0.7);
+    font-size: 24px;
   }
 
   tr:last-child td {
     border-bottom: none;
   }
 
-  tbody tr:hover {
-    background-color: rgba(124, 58, 237, 0.05);
+  tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
   }
 
   /* 表格内的代码 */
@@ -313,7 +337,7 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-size: 22px;
   }
 
-  /* 封面图 */
+  /* ── 封面图 ──────────────────────────────────── */
   .cover-image {
     max-width: 100%;
     height: auto;
