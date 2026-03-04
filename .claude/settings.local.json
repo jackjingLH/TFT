@@ -34,7 +34,10 @@
       "Skill(translate-guide)",
       "Bash(mkdir:*)",
       "WebFetch(domain:tftacademy.com)",
-      "WebFetch(domain:docs.excalidraw.com)"
+      "WebFetch(domain:docs.excalidraw.com)",
+      "Bash(python3 \"C:\\\\Users\\\\jinglihao\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"gaming guide dark mode reading comfortable typography\" --design-system -p \"TFT Guide\" 2>&1 || python \"C:\\\\Users\\\\jinglihao\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"gaming guide dark mode reading comfortable typography\" --design-system -p \"TFT Guide\" 2>&1)",
+      "Bash(python3:*)",
+      "Bash(py:*)"
     ],
     "deny": [],
     "ask": []
