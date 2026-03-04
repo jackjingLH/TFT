@@ -373,17 +373,30 @@ async function convertMdToImage(mdFilePath, outputPath) {
     // 添加主标题（保留原有的h1标签）
     h1ContainerContent += '<h1>$1</h1>';
 
-    // 添加封面图片（如果存在）
+    // 添加封面图片（如果存在且文件真实存在）
     if (coverImagePath) {
       // 处理封面图片路径
       let coverImageUrl = coverImagePath;
+      let shouldAddCover = true;
+
       if (!coverImagePath.startsWith('http://') && !coverImagePath.startsWith('https://')) {
         // 相对路径，转换为绝对路径
         const coverImageAbsPath = path.resolve(mdDir, coverImagePath);
-        coverImageUrl = `file:///${coverImageAbsPath.replace(/\\/g, '/')}`;
-        console.log(`封面图路径: ${coverImageUrl}`);
+
+        // 检查文件是否存在
+        if (!fs.existsSync(coverImageAbsPath)) {
+          console.log(`⚠️  警告: 封面图片不存在，已忽略: ${coverImagePath}`);
+          shouldAddCover = false;
+        } else {
+          coverImageUrl = `file:///${coverImageAbsPath.replace(/\\/g, '/')}`;
+          console.log(`封面图路径: ${coverImageUrl}`);
+        }
       }
-      h1ContainerContent += `<img class="cover-image" src="${coverImageUrl}" alt="封面图">`;
+
+      // 只在文件存在或为网络URL时添加
+      if (shouldAddCover) {
+        h1ContainerContent += `<img class="cover-image" src="${coverImageUrl}" alt="封面图">`;
+      }
     }
 
     // 在第一个h1标签外包裹容器，包含副标题和封面图

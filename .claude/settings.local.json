@@ -34,7 +34,9 @@
       "Skill(translate-guide)",
       "Bash(mkdir:*)",
       "WebFetch(domain:tftacademy.com)",
-      "WebFetch(domain:docs.excalidraw.com)"
+      "WebFetch(domain:docs.excalidraw.com)",
+      "WebFetch(domain:tftimes.info)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
