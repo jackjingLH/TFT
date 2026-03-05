@@ -37,7 +37,12 @@
       "WebFetch(domain:docs.excalidraw.com)",
       "Bash(python3 \"C:\\\\Users\\\\jinglihao\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"gaming guide dark mode reading comfortable typography\" --design-system -p \"TFT Guide\" 2>&1 || python \"C:\\\\Users\\\\jinglihao\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"gaming guide dark mode reading comfortable typography\" --design-system -p \"TFT Guide\" 2>&1)",
       "Bash(python3:*)",
-      "Bash(py:*)"
+      "Bash(py:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(netstat -ano | findstr \"LISTENING\" | findstr -E \"7890|7891|1080|10809|8080|8118\" 2>&1)",
+      "Bash(head:*)",
+      "Bash(findstr:*)",
+      "Bash(node --version 2>&1 && deno --version 2>&1)"
     ],
     "deny": [],
     "ask": []
