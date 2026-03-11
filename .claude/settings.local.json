@@ -32,6 +32,7 @@
       "Bash(echo:*)",
       "Skill(normalize)",
       "Skill(translate-guide)",
+      "Skill(ui-ux-pro-max)",
       "Bash(mkdir:*)",
       "WebFetch(domain:tftacademy.com)",
       "WebFetch(domain:docs.excalidraw.com)",
@@ -42,7 +43,9 @@
       "Bash(netstat -ano | findstr \"LISTENING\" | findstr -E \"7890|7891|1080|10809|8080|8118\" 2>&1)",
       "Bash(head:*)",
       "Bash(findstr:*)",
-      "Bash(node --version 2>&1 && deno --version 2>&1)"
+      "Bash(node --version 2>&1 && deno --version 2>&1)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(uipro init:*)"
     ],
     "deny": [],
     "ask": []

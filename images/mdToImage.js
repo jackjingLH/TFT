@@ -134,7 +134,7 @@ function generateCSS(h1BackgroundImagePath = '') {
 
   /* ── 一级标题 ─────────────────────────────────── */
   h1 {
-    font-size: 100px;
+    font-size: 108px;
     font-weight: 900;
     margin: 0;
     padding: 0;
@@ -208,10 +208,23 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-weight: 700;
   }
 
-  /* ── 粗体 — 近白，不再用颜色干扰阅读 ───────────── */
+  /* ── 粗体 — 科技蓝，与金色标题和红色标签明显区分 ───────────── */
   strong {
-    color: #F1F5F9;
+    color: #3B82F6;
     font-weight: 700;
+    text-shadow:
+      0 0 12px rgba(59, 130, 246, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── 下划线 — 金色下划线，保留经典样式 ─────────── */
+  u {
+    color: #FCD34D;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 3px solid #F59E0B;
+    padding-bottom: 2px;
+    box-shadow: 0 3px 0 rgba(245, 158, 11, 0.3);
   }
 
   /* ── 斜体 — 淡金，轻柔区分 ─────────────────────── */
