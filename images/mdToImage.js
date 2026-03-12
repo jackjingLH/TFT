@@ -11,44 +11,49 @@ const __dirname = dirname(__filename);
 // 配置项
 const CONFIG = {
   // 图片尺寸
-  width: 900,            // 宽度（像素）
-  // height: 自动根据内容调整
+  width: 900,
 
-  // 背景颜色 - VSCode 深色主题
-  backgroundColor: '#1e1e1e',  // VSCode 深色背景
+  // 背景颜色 - 深空蓝黑
+  backgroundColor: '#0B0E1A',
 
   // 一级标题背景图设置
   h1BackgroundImage: './bg.png',
-  // 可选的背景图URL：
-  // - 游戏类: 'https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200'
-  // - 科技感: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200'
-  // - 战斗场景: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1200'
-  // - 纯色留空: ''  （使用渐变背景）
 
-  // 字体配置 - 移动端超大字体优化
-  fontFamily: 'Microsoft YaHei, Arial, sans-serif',  // 微软雅黑
-  fontSize: '32px',      // 超大字体，移动端非常清晰
-  lineHeight: '2.1',     // 超大行距（保持不变）
+  // 字体配置 - 游戏专用字体（Russo One + Chakra Petch）
+  fontFamily: '"Chakra Petch", "Microsoft YaHei", Arial, sans-serif',
+  fontSize: '30px',
+  lineHeight: '1.9',
 
-  // 内边距 - 移动端优化
-  padding: '0px',        // 去掉body内边距，让标题区域可以满宽
+  // 内边距
+  padding: '0px',
 
   // 输出格式
-  imageFormat: 'png',  // 'png' 或 'jpeg'
-  imageQuality: 100,   // JPEG质量 (1-100)
+  imageFormat: 'png',
+  imageQuality: 100,
 };
 
 // 生成CSS样式的函数（支持动态背景图路径）
 function generateCSS(h1BackgroundImagePath = '') {
   return `
-  /* ── 调色板 ──────────────────────────────────────
-     背景:   #0D1117 (深碳黑)
-     正文:   #C9D1D9 (暖灰白)
-     强调色: #F59E0B (琥珀金) ← TFT 金币主题色
-     次强调: #FCD34D (浅金)
-     代码:   #7DD3FC (天蓝)
-     标签:   #F43F5E (玫红)
-  ─────────────────────────────────────────────── */
+  /* ── 字体导入 ─────────────────────────────────────────────
+     Russo One:    粗犷有力，适合游戏标题
+     Chakra Petch: 技术感强，兼具可读性，适合游戏攻略正文
+  ─────────────────────────────────────────────────────────── */
+  @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,400&family=Russo+One&display=swap');
+
+  /* ── 调色板 ──────────────────────────────────────────────
+     背景:     #0B0E1A  深空蓝黑
+     面板:     #111827  石板深面板
+     正文:     #CBD5E1  银蓝白（比纯白更护眼）
+     副文字:   #64748B  石板灰
+     金色:     #F59E0B  TFT金币主题
+     浅金:     #FBBF24
+     紫色:     #8B5CF6  次强调（数据/特殊词条）
+     浅紫:     #A78BFA
+     玫红:     #F43F5E  标签/警示
+     蓝色:     #60A5FA  链接/代码
+     边框:     rgba(255,255,255,0.06)
+  ─────────────────────────────────────────────────────────── */
 
   body {
     margin: 0;
@@ -56,103 +61,105 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-family: ${CONFIG.fontFamily};
     font-size: ${CONFIG.fontSize};
     line-height: ${CONFIG.lineHeight};
-    background: #0D1117;
-    color: #C9D1D9;
+    /* 深空背景 + 点阵纹理（dot 1.5px / 28px 间距） */
+    background-color: #0B0E1A;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1.5px, transparent 1.5px);
+    background-size: 28px 28px;
+    color: #CBD5E1;
     position: relative;
   }
 
-  /* 顶部金→玫红装饰线 */
+  /* 顶部装饰线: 金 → 紫 → 玫红 */
   body::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #F59E0B 0%, #FCD34D 50%, #F43F5E 100%);
+    height: 3px;
+    background: linear-gradient(90deg, #F59E0B 0%, #8B5CF6 55%, #F43F5E 100%);
     z-index: 10;
   }
 
-  /* ── 一级标题容器 ─────────────────────────────── */
+  /* ── 一级标题容器 ─────────────────────────────────────── */
   .h1-container {
     margin: 0;
-    padding: 88px 40px 80px 40px;
+    padding: 80px 48px 72px 48px;
     position: relative;
 
     ${h1BackgroundImagePath ? `
     background-image:
       linear-gradient(160deg,
-        rgba(0, 0, 0, 0.82) 0%,
-        rgba(13, 17, 23, 0.72) 50%,
-        rgba(0, 0, 0, 0.78) 100%
+        rgba(11, 14, 26, 0.90) 0%,
+        rgba(11, 14, 26, 0.76) 40%,
+        rgba(11, 14, 26, 0.86) 100%
       ),
-      radial-gradient(circle at 15% 50%, rgba(245, 158, 11, 0.12) 0%, transparent 55%),
-      radial-gradient(circle at 85% 20%, rgba(252, 211, 77, 0.06) 0%, transparent 50%),
       url('${h1BackgroundImagePath}');
-    background-size: cover, cover, cover, cover;
-    background-position: center, center, center, center;
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.4);
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
     ` : `
     background: linear-gradient(160deg,
-      rgba(245, 158, 11, 0.06) 0%,
-      rgba(13, 17, 23, 0.98) 35%,
-      rgba(13, 17, 23, 0.98) 65%,
-      rgba(245, 158, 11, 0.04) 100%
+      rgba(139, 92, 246, 0.08) 0%,
+      rgba(11, 14, 26, 1) 40%,
+      rgba(245, 158, 11, 0.05) 100%
     );
     `}
 
-    border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.18);
   }
 
-  /* ── 标签 ─────────────────────────────────────── */
+  /* ── 标签 ─────────────────────────────────────────────── */
   .tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
-    margin: 0 0 20px 0;
+    gap: 12px;
+    margin: 0 0 24px 0;
     align-items: center;
   }
 
   .tag {
     display: inline-block;
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 1.2;
-    color: #ffffff;
+    font-family: 'Russo One', ${CONFIG.fontFamily};
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
     background: linear-gradient(135deg,
-      rgba(244, 63, 94, 0.9) 0%,
-      rgba(220, 38, 38, 0.9) 100%
+      rgba(244, 63, 94, 0.85) 0%,
+      rgba(220, 38, 38, 0.85) 100%
     );
-    padding: 3px 18px;
-    border-radius: 20px;
-    border: 1px solid rgba(244, 63, 94, 0.5);
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(244, 63, 94, 0.25);
-    vertical-align: middle;
+    padding: 4px 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(244, 63, 94, 0.35);
+    box-shadow: 0 2px 10px rgba(244, 63, 94, 0.2);
   }
 
-  /* ── 一级标题 ─────────────────────────────────── */
+  /* ── 一级标题 ─────────────────────────────────────────── */
   h1 {
+    font-family: 'Russo One', ${CONFIG.fontFamily};
     font-size: 108px;
     font-weight: 900;
     margin: 0;
     padding: 0;
     color: #FFFFFF;
     text-align: left;
-    letter-spacing: 1px;
-    line-height: 1.25;
-    /* 金色微光，比紫色柔和得多 */
-    text-shadow: 0 2px 20px rgba(245, 158, 11, 0.15);
-    background: none;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    text-shadow:
+      0 2px 24px rgba(245, 158, 11, 0.18),
+      0 0 60px rgba(139, 92, 246, 0.08);
   }
 
-  /* ── 二级标题 — 琥珀金左边框 ────────────── */
+  /* ── 二级标题 — 章节分隔（TODO: human 实现视觉效果） ─── */
+  /* TODO(human): 实现 h2 的视觉样式 —— 请看 Learn by Doing */
   h2 {
-    font-size: 38px;
-    font-weight: 800;
-    margin: 28px 0 14px 0;
-    padding: 10px 40px 10px 32px;
+    font-family: 'Russo One', ${CONFIG.fontFamily};
+    font-size: 36px;
+    font-weight: 900;
+    margin: 32px 0 16px 0;
+    padding: 14px 40px 14px 20px;
     color: #FBBF24;
     background: linear-gradient(90deg,
       rgba(245, 158, 11, 0.10) 0%,
@@ -164,138 +171,190 @@ function generateCSS(h1BackgroundImagePath = '') {
     position: relative;
   }
 
-  /* ── 三级标题 — 浅金，层级明确 ─────────────────── */
+  /* ── 三级标题 — 菱形 marker ──────────────────────────── */
   h3 {
-    font-size: 31px;
+    font-family: '"Chakra Petch"', ${CONFIG.fontFamily};
+    font-size: 29px;
     font-weight: 700;
-    margin: 22px 0 12px 0;
-    padding: 5px 40px 5px 36px;
-    color: #D4A017;
-    background: linear-gradient(90deg,
-      rgba(245, 158, 11, 0.06) 0%,
-      transparent 70%
-    );
-    border-left: 3px solid rgba(245, 158, 11, 0.5);
-    border-radius: 0 4px 4px 0;
+    margin: 20px 0 10px 0;
+    padding: 4px 40px 4px 48px;
+    color: #CBD5E1;
+    position: relative;
   }
 
-  /* ── 段落 ─────────────────────────────────────── */
+  /* 菱形 marker */
+  h3::before {
+    content: '◆';
+    position: absolute;
+    left: 26px;
+    color: rgba(245, 158, 11, 0.5);
+    font-size: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* ── 段落 ─────────────────────────────────────────────── */
   p {
-    margin: 14px 0;
+    margin: 12px 0;
     padding: 0 40px;
-    color: #C9D1D9;
+    color: #CBD5E1;
   }
 
-  /* ── 列表 ─────────────────────────────────────── */
+  /* ── 列表 ─────────────────────────────────────────────── */
   ul, ol {
-    margin: 14px 0;
-    padding-left: 70px;
+    margin: 12px 0;
+    padding-left: 72px;
     padding-right: 40px;
-    color: #C9D1D9;
+    color: #CBD5E1;
   }
 
   li {
-    margin: 11px 0;
-    line-height: 2.0;
+    margin: 10px 0;
+    line-height: 1.9;
   }
 
-  /* 列表标记用金色 */
-  ul li::marker {
-    color: #F59E0B;
-  }
-  ol li::marker {
-    color: #F59E0B;
-    font-weight: 700;
+  /* ── ul — 金色菱形 marker（inline-block 垂直居中） ───── */
+  ul {
+    list-style: none;
   }
 
-  /* ── 粗体 — 科技蓝，与金色标题和红色标签明显区分 ───────────── */
+  ul li::before {
+    content: '◆';
+    display: inline-block;
+    width: 36px;
+    margin-left: -44px;
+    color: #F59E0B;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  /* 嵌套 ul — 空心菱形，视觉减弱表达层级 */
+  ul ul li::before {
+    content: '◇';
+    color: rgba(245, 158, 11, 0.5);
+    font-size: 16px;
+  }
+
+  /* ── ol — 金色圆形数字徽章（inline-block 垂直居中） ─── */
+  ol {
+    list-style: none;
+    counter-reset: ol-counter;
+  }
+
+  ol li {
+    counter-increment: ol-counter;
+  }
+
+  ol li::before {
+    content: counter(ol-counter);
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    margin-left: -50px;
+    margin-right: 14px;
+    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+    color: #0B0E1A;
+    font-family: 'Russo One', ${CONFIG.fontFamily};
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    line-height: 36px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+    vertical-align: middle;
+  }
+
+  /* ── 粗体 — 金色（TFT 强调词、英雄名、技能名） ────────── */
   strong {
-    color: #3B82F6;
+    color: #FBBF24;
     font-weight: 700;
-    text-shadow:
-      0 0 12px rgba(59, 130, 246, 0.4),
-      0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
-  /* ── 下划线 — 金色下划线，保留经典样式 ─────────── */
+  /* ── 下划线 — 金色波浪线 ─────────────────────────────── */
   u {
     color: #FCD34D;
     font-weight: 700;
-    text-decoration: none;
-    border-bottom: 3px solid #F59E0B;
-    padding-bottom: 2px;
-    box-shadow: 0 3px 0 rgba(245, 158, 11, 0.3);
+    text-decoration: underline wavy;
+    text-decoration-color: #F59E0B;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 2px;
   }
 
-  /* ── 斜体 — 淡金，轻柔区分 ─────────────────────── */
+  /* ── 斜体 — 紫色（特殊词条、buff 名、说明文字） ──────── */
   em {
-    color: #FDE68A;
+    color: #A78BFA;
     font-style: italic;
   }
 
-  /* ── 行内代码 — 天蓝色，视觉区分清晰 ──────────── */
+  /* ── 行内代码 ─────────────────────────────────────────── */
   code {
-    background: rgba(14, 116, 144, 0.18);
+    background: rgba(30, 41, 59, 0.8);
     color: #7DD3FC;
     padding: 2px 8px;
-    border-radius: 5px;
+    border-radius: 4px;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    font-size: 0.88em;
-    border: 1px solid rgba(125, 211, 252, 0.2);
+    font-size: 0.85em;
+    border: 1px solid rgba(125, 211, 252, 0.15);
   }
 
-  /* ── 代码块 — 顶部金色线 ────────────────────────── */
+  /* ── 代码块 — 顶部紫色线 ────────────────────────────── */
   pre {
-    background: #161B22;
+    background: #0D1117;
     margin: 16px 40px;
     padding: 20px 24px;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow-x: auto;
-    border: 1px solid rgba(48, 54, 61, 0.8);
-    border-top: 2px solid #F59E0B;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 2px solid #8B5CF6;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 
   pre code {
     background: transparent;
     padding: 0;
-    color: #C9D1D9;
+    color: #E2E8F0;
     border: none;
     font-size: ${CONFIG.fontSize};
   }
 
-  /* ── 引用块 — 金色左线 + 低饱和背景 ────────────── */
-  /* ── 引用块 — 无边线，斜体灰色正文 ─────────────── */
+  /* ── 引用块 — 提示卡 ─────────────────────────────────── */
+  /* TODO(human): 实现 blockquote 提示卡样式，见 Learn by Doing */
   blockquote {
-    margin: 18px 40px;
-    padding: 10px 24px;
-    color: #808080;
-    background: none;
-    font-style: italic;
+    margin: 16px 40px;
+    padding: 20px 28px;
+    position: relative;
   }
 
-  /* ── 链接 — 柔和蓝，避免与金色强调混淆 ─────────── */
+  blockquote p {
+    margin: 0;
+    padding: 0;
+    color: #CBD5E1;
+    font-style: normal;
+  }
+
+  /* ── 链接 ─────────────────────────────────────────────── */
   a {
     color: #60A5FA;
     text-decoration: none;
-    border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+    border-bottom: 1px solid rgba(96, 165, 250, 0.25);
   }
 
-  /* ── 分割线 ────────────────────────────────────── */
+  /* ── 分割线 ───────────────────────────────────────────── */
   hr {
     border: none;
-    border-top: 1px solid rgba(245, 158, 11, 0.2);
-    margin: 28px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin: 24px 40px;
   }
 
-  /* ── 图片 ────────────────────────────────────── */
+  /* ── 图片 ─────────────────────────────────────────────── */
   img {
     max-width: calc(100% - 80px);
     height: auto;
     display: block;
-    margin: 22px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   }
 
   /* Emoji 支持 */
@@ -303,38 +362,39 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   }
 
-  /* ── 表格 — 深碳背景 + 金色表头 ─────────────────── */
+  /* ── 表格 — 紫色表头（与金色 h2 形成层级区分） ──────── */
   table {
     width: calc(100% - 80px);
-    margin: 22px 40px;
+    margin: 20px 40px;
     border-collapse: collapse;
-    background: #161B22;
-    border: 1px solid rgba(48, 54, 61, 0.9);
-    border-radius: 12px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   }
 
   thead {
-    background: rgba(245, 158, 11, 0.10);
-    border-bottom: 2px solid #F59E0B;
+    background: rgba(139, 92, 246, 0.12);
+    border-bottom: 2px solid rgba(139, 92, 246, 0.45);
   }
 
   th {
-    padding: 14px 20px;
+    padding: 14px 18px;
     text-align: left;
     font-weight: 700;
-    color: #FBBF24;
-    border-bottom: 2px solid #F59E0B;
-    font-size: 26px;
+    font-family: 'Russo One', ${CONFIG.fontFamily};
+    color: #A78BFA;
+    font-size: 24px;
     letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(139, 92, 246, 0.45);
   }
 
   td {
-    padding: 13px 20px;
-    color: #C9D1D9;
-    border-bottom: 1px solid rgba(48, 54, 61, 0.7);
-    font-size: 24px;
+    padding: 12px 18px;
+    color: #CBD5E1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 23px;
   }
 
   tr:last-child td {
@@ -342,21 +402,20 @@ function generateCSS(h1BackgroundImagePath = '') {
   }
 
   tbody tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.025);
   }
 
-  /* 表格内的代码 */
   table code {
-    font-size: 22px;
+    font-size: 21px;
   }
 
-  /* ── 封面图 ──────────────────────────────────── */
+  /* ── 封面图 ───────────────────────────────────────────── */
   .cover-image {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 33px 0 0 0;
-    border-radius: 12px;
+    margin: 28px 0 0 0;
+    border-radius: 10px;
     padding: 0;
   }
 `;
@@ -498,11 +557,11 @@ async function convertMdToImage(mdFilePath, outputPath) {
 
     const page = await browser.newPage();
 
-    // 设置视口宽度（1倍像素，实际宽度1080px）
+    // 设置视口宽度
     await page.setViewport({
       width: CONFIG.width,
-      height: 800,  // 初始高度，实际高度会根据内容调整
-      deviceScaleFactor: 1  // 1倍分辨率（原2倍）
+      height: 800,
+      deviceScaleFactor: 1
     });
 
     // 使用 goto 加载本地HTML文件，这样图片相对路径就能正确解析
@@ -520,7 +579,7 @@ async function convertMdToImage(mdFilePath, outputPath) {
     await page.setViewport({
       width: CONFIG.width,
       height: bodyHeight,
-      deviceScaleFactor: 1  // 1倍分辨率
+      deviceScaleFactor: 1
     });
 
     // 截图
