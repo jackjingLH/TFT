@@ -55,6 +55,15 @@ function generateCSS(h1BackgroundImagePath = '') {
      边框:     rgba(255,255,255,0.06)
   ─────────────────────────────────────────────────────────── */
 
+  /* 确保背景网格覆盖整个截图区域 */
+  html {
+    background-color: #0B0E1A;
+    /* 折中点阵：2px点 + 0.08不透明度 + 26px间距 = 微妙但可见 */
+    background-image: radial-gradient(circle, rgba(255,255,255,0.08) 2px, transparent 2px);
+    background-size: 26px 26px;
+    background-attachment: fixed;
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -62,9 +71,7 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-size: ${CONFIG.fontSize};
     line-height: ${CONFIG.lineHeight};
     /* 深空背景 + 点阵纹理（dot 1.5px / 28px 间距） */
-    background-color: #0B0E1A;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1.5px, transparent 1.5px);
-    background-size: 28px 28px;
+    background: transparent;
     color: #CBD5E1;
     position: relative;
   }
@@ -271,12 +278,12 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-weight: 700;
   }
 
-  /* ── 下划线 — 金色波浪线 ─────────────────────────────── */
+  /* ── 下划线 — 紫色波浪线（保持原文字颜色，与金色加粗形成对比） ─── */
   u {
-    color: #FCD34D;
-    font-weight: 700;
+    color: inherit;  /* 保持原文字颜色 #CBD5E1 */
+    font-weight: 600;  /* 略微加粗以突出 */
     text-decoration: underline wavy;
-    text-decoration-color: #F59E0B;
+    text-decoration-color: #8B5CF6;  /* 紫色下划线，符合TFT主题 */
     text-underline-offset: 5px;
     text-decoration-thickness: 2px;
   }
@@ -318,19 +325,39 @@ function generateCSS(h1BackgroundImagePath = '') {
     font-size: ${CONFIG.fontSize};
   }
 
-  /* ── 引用块 — 提示卡 ─────────────────────────────────── */
-  /* TODO(human): 实现 blockquote 提示卡样式，见 Learn by Doing */
+  /* ── 引用块 — TFT风格提示卡（顶部紫色边框，避免与h2左边框重复） ──────────── */
   blockquote {
-    margin: 16px 40px;
-    padding: 20px 28px;
+    margin: 20px 40px;
+    padding: 28px 32px 28px 80px;
     position: relative;
+    background: linear-gradient(135deg,
+      rgba(139, 92, 246, 0.10) 0%,
+      rgba(245, 158, 11, 0.06) 100%
+    );
+    /* 顶部紫色粗边框 + 全边框 + 圆角 */
+    border: 1px solid rgba(139, 92, 246, 0.30);
+    border-top: 3px solid #8B5CF6;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.15);
+  }
+
+  /* 左侧紫色灯泡图标 */
+  blockquote::before {
+    content: '💡';
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 36px;
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
   }
 
   blockquote p {
     margin: 0;
     padding: 0;
-    color: #CBD5E1;
+    color: #E2E8F0;
     font-style: normal;
+    font-weight: 500;
   }
 
   /* ── 链接 ─────────────────────────────────────────────── */
