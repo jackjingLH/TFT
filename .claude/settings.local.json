@@ -45,7 +45,17 @@
       "Bash(findstr:*)",
       "Bash(node --version 2>&1 && deno --version 2>&1)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(uipro init:*)"
+      "Bash(uipro init:*)",
+      "Read(//d/code/TFT/$HOME/.claude/**)",
+      "Bash(mkdir -p \"$HOME/.claude/skills\")",
+      "Read(//c/Users/LiHaoJing/.claude/skills/**)",
+      "Bash(dir \"C:\\\\Users\\\\LiHaoJing\\\\.claude\\\\skills\")",
+      "Bash(dir:*)",
+      "Bash(\"D:/code/TFT/TFT.md\")",
+      "Bash(cp:*)",
+      "Bash(find D:/code/TFT -name *.py -o -name *translat* -o -name *convert*)",
+      "Bash(find D:/code/TFT -name *backup* -o -name *temp* -o -name *old* -o -name *副本*)",
+      "Bash(find D:/code/TFT -name *.tmp -o -name *.temp -o -name *.bak)"
     ],
     "deny": [],
     "ask": []
