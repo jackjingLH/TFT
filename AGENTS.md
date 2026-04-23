@@ -1,19 +1,18 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-Root-level files such as `TFT.txt`, `TFT.md`, and `TFT_table.md` are the working inputs and outputs for guide processing. Core automation lives in `scraper/` and `images/`.
+Root-level files such as `TFT.txt` and `TFT.md` are the working inputs and outputs for guide processing. Core automation lives in `scraper/` and `images/`.
 
-- `scraper/`: Node.js ESM scripts for fetching TFT guides and saving normalized text or JSON (`fetchTftAcademyGuide.js`, `fetchTftipsGuide.js`, `data/`).
+- `scraper/`: Node.js ESM scripts for fetching TFT guides and saving normalized text or JSON (`fetchTftAcademyGuide.js`, `data/`).
 - `images/`: Markdown-to-image pipeline (`workflow.js`, `mdToImage.js`, `splitImageSmart.js`) plus static assets such as `bg.png`.
-- `docs/`: translation rules, term dictionaries, QA checklists, and processing protocols.
+- `docs/`: term dictionaries and planning/reference documents.
 - `output/`: generated images. Treat this as build output, not source.
-- `archive/` and `guides/`: reference material and stored content snapshots.
+- `archive/`: reference material and stored content snapshots.
 
 ## Build, Test, and Development Commands
 Install dependencies from the repository root with `npm install`. Install scraper-specific dependencies with `npm install --prefix scraper`.
 
 - `node scraper/fetchTftAcademyGuide.js <url>`: fetch a TFT Academy guide into local text/JSON artifacts.
-- `node scraper/fetchTftipsGuide.js <url>`: fetch a TFTips guide into `TFT.txt`.
 - `node images/workflow.js TFT.md`: render the current Markdown guide and split images into `output/`.
 - `npm test`: currently a placeholder that exits with an error; do not rely on it as validation.
 

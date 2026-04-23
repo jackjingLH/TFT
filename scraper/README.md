@@ -44,8 +44,7 @@ node fetchTftAcademyGuide.js https://tftacademy.com/tierlist/comps/set-15-xxx
 执行后会生成：
 
 ```
-translation/
-└── set-15-nine-thousand-volts-kennen.txt   # TFT格式文本
+../TFT.txt   # TFT格式文本
 
 scraper/data/
 └── set-15-nine-thousand-volts-kennen_guide.json   # JSON格式数据
@@ -80,21 +79,14 @@ node fetchTftAcademyGuide.js <URL>
 ```
 
 **输出：**
-- `set-15-xxx.txt` - 用于翻译的文本文件
+- `../TFT.txt` - 用于翻译的文本文件
 - `set-15-xxx_guide.json` - 结构化数据
 
 ### 2. 翻译文本
 
-按照 `TFT_Guide_Translation_Rules.md` 规则翻译内容
-
-参考 `TFT_items_translate.js` 专业术语对照表
+按照项目术语表翻译内容
 
 ### 3. 生成图片
-
-```bash
-cd ../mdToImg
-node workflow.js "../translated_guides/xxx.md"
-```
 
 **输出：**
 - 完整长图
@@ -124,7 +116,6 @@ node workflow.js "../translated_guides/xxx.md"
 ```
 scraper/
 ├── fetchTftAcademyGuide.js   # TFT Academy抓取脚本
-├── fetchComps.js             # 批量抓取阵容列表
 ├── config.js                 # 配置文件
 ├── package.json              # 依赖管理
 └── data/                     # 输出目录

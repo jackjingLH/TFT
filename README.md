@@ -83,7 +83,6 @@ flowchart TD
 ```bash
 # 方式1: 使用抓取脚本获取原文
 node scraper/fetchTftAcademyGuide.js <URL>
-node scraper/fetchTftipsGuide.js <URL>
 
 # 方式2: 人工摘录到 TFT.txt
 
@@ -100,8 +99,6 @@ node images/workflow.js TFT.md  # 生成图片
 ├── docs/
 │   ├── terms/
 │   │   └── zh_terms.csv          # 852个标准游戏术语（纠错核心）
-│   └── protocols/
-│       └── translation-protocol.md  # 处理规范
 ├── scraper/                       # 网页抓取工具
 ├── images/                        # 图片生成工具
 ├── TFT.txt                        # 输入：原文（字幕/抓取/人工）
@@ -118,7 +115,6 @@ node images/workflow.js TFT.md  # 生成图片
 **翻译与验证：**
 - `/translate-guide` - 翻译攻略（支持攻略和版本更新两种类型）
 - `/validate-terms` - 验证翻译质量
-- `/feedback-learning` - 从用户修正中学习
 
 ## 📜 脚本命令
 
@@ -126,9 +122,6 @@ node images/workflow.js TFT.md  # 生成图片
 ```bash
 # 抓取 TFT Academy 攻略（需要提供URL）
 node scraper/fetchTftAcademyGuide.js <URL>
-
-# 抓取 TFTips 攻略（需要提供URL）
-node scraper/fetchTftipsGuide.js <URL>
 
 # 示例：抓取攻略
 node scraper/fetchTftAcademyGuide.js https://tftacademy.com/tierlist/comps/set-15-your-comp
@@ -142,7 +135,7 @@ node images/workflow.js TFT.md
 
 ## 📊 术语纠错原理
 
-基于 **分层术语处理算法**（详见 `docs/protocols/translation-protocol.md`）：
+基于 **分层术语处理算法**：
 
 1. **步骤A**: 完全匹配 - 直接识别标准术语
 2. **步骤B**: 读音相似度 - 修正同音字错误（核心步骤）

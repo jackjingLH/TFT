@@ -1,142 +1,97 @@
-概要
-エコーの☆3を目指す、2コストリロール構成。
-複雑な条件の解除が不要で、初心者にもおすすめの構成。
-一方で、終盤での伸びが期待しにくく、キャリーをファイターユニットに頼っている都合上、1位を取り切るのは難しい。
-イシュタル
-を絡めやすく、早期に引けた場合は盤面に組み込みつつリロールを行えるのも強み。
-プレイ条件
-ステージ1でエコーがドロップし、かつアイテムがある時
-お得な2
-お得な2
-等、2コストリロールを決め打てる強力なオーグメントを引いた時
-リロール
-Lv6でスローロールを行う。
-最終的な伸びが作りにくい構成なので、ステージ3は特に連勝を狙いたい。
-ステージ2の間は経験値に降らず、最大限利子を取る。
-3-2でLv6に上げ、エコー☆2がまでリロール。
-50Gまで貯めなおし、エコーニーコの☆3が出来るまでLv6でスローロール。
-ニーコの☆3はニダリー の耐久力に直結するため、可能な限り狙いたいが、エコー☆3が出来たタイミングで余りにも集まりが悪ければ諦めてレベルを上げていってOK。
-完成次第Lv7、Lv8に上げて特性を伸ばす。
+Source: https://www.reddit.com/r/CompetitiveTFT/comments/1saayhl/one_trick_to_challenger_braumlissandra_guide/
+Captured on: 2026-04-08 (Asia/Shanghai)
+Thread date: 2026-04-02
+Subreddit: r/CompetitiveTFT
+Tag: Guide
+Title: One Trick to Challenger - Braum/Lissandra Guide
+Author: DahliaCream (Rooted)
 
-アイテム
-エコー
-エコー
-巨人の誓い
-ブラッドサースター
-グインソー レイジブレード
-ハンド オブ ジャスティス
-ジュエル ガントレット
-ラバドン デスキャップ
-シーカー アームガード
-ウィッツ エンド
-ミトン
-ニダリー 
-ニダリー
-ジュエル ガントレット
-ストライカー フレイル
-ハンド オブ ジャスティス
-ジャイアント スレイヤー
-ラバドン デスキャップ
-アークエンジェル スタッフ
-ヘクステック ガンブレード
-ゾウンの紋章
-盗賊のグローブ
-ニーコ
-ニーコ
-スピリット ビサージュ
-サンファイア ケープ
-ワーモグ アーマー
-ガーゴイル ストーンプレート
-アイオニック スパーク
-クラウンガード
-ブランブル ベスト
-ドラゴン クロウ
-アダプティブ ヘルム
-セラフィーン
-セラフィーン
-ナッシャー トゥース
-ジュエル ガントレット
-ラバドン デスキャップ
-ヴォイド スタッフ
-モレロノミコン
-ショウジンの矛
-アダプティブ ヘルム
-ストライカー フレイル
-アークエンジェル スタッフ
-エコーの理想装備であるブラッドサースター巨人の誓いを優先的に作りにいく。
-残りの1枠はハンド オブ ジャスティスかグインソー レイジブレードどちらかを狙う。
-その後は余った素材でニダリー やセラフィーンの武器を揃えていく。キャリーが多い構成なので、盗賊のグローブを駆使して上手くアイテムを分配できると良い
+Main Post
 
-オーグメント
-エグザイル I
-エグザイル I
-カナとカネ
-カナとカネ
-チーム構築
-チーム構築
-パンドラのアイテム
-パンドラのアイテム
-ファイアセール
-ファイアセール
-ローリングデイズ I
-ローリングデイズ I
-ボクシングのレッスン
-ボクシングのレッスン
-ラインナップ
-ラインナップ
-天の祝福 I
-天の祝福 I
-未来の鍛冶場
-未来の鍛冶場
-起死回生
-起死回生
-素材ビュッフェ
-素材ビュッフェ
-エグザイル II
-エグザイル II
-インフィニティの守護
-インフィニティの守護
-お得な2
-お得な2
-ジュエル ロータス I
-ジュエル ロータス I
-トレードセクター
-トレードセクター
-スター誕生
-スター誕生
-パンドラのベンチ
-パンドラのベンチ
-パンドラのアイテム II
-パンドラのアイテム II
-ポータブル フォージ
-ポータブル フォージ
-仕送り
-仕送り
-大きな福袋
-大きな福袋
-天の祝福 II
-天の祝福 II
-敵を知れ
-敵を知れ
-精密かつ優雅
-精密かつ優雅
-英雄のラッキーバッグ
-英雄のラッキーバッグ
-ジャイアント&マイティ
-ジャイアント&マイティ
-ジュエル ロータス II
-ジュエル ロータス II
-プリズムチケット
-プリズムチケット
-埋もれた宝物
-埋もれた宝物
-力に鍛えられしもの
-力に鍛えられしもの
-歩く鍛冶場
-歩く鍛冶場
-小さくても強烈
-小さくても強烈
-報復
-報復
-天の祝福 III
-天の祝福 III
+Hi, I'm Rooted, an OCE TFT player. I'm currently rank 8 at the time of writing, and climbed there from GM, gaining around 700 LP by forcing Braum/Liss for roughly 150 games over multiple patches.
+
+I was inspired to write this after reading kyle8998's Asol guide. Similar to Asol, Braum/Liss is not a new comp at all, but after spamming 150 games of it, I felt like I had really learned the ins and outs of the comp, so I thought I'd share what I learned. Mort said this set was meant to reward flexibility, but I wanted to see how far I could get doing the exact opposite.
+
+Match History:
+https://lolchess.gg/profile/oce/Rooted-OC/set16
+
+Why Braum/Liss
+Note this comp does not outcap the current strongest meta boards like Annie/Sylas or Freljord Bruiser Ryze. That is not the point of it. The reason to play Braum/Lissandra is consistency. If you hit your board on level 8, the comp is incredibly stable and very good at converting games into top 4s. Braum 2 and Lissandra 2 are usually all you need to stabilise, and the comp gives you a very strong Stage 4 that lets you punish weaker boards trying to cap out and preserve a lot of HP.
+
+Also, not to mention Ornn has been added as a Freljordian this patch, so this comp has been indirectly buffed with more room for flex if you do get to level 9/10.
+
+Image note: Standard level 8 board
+
+Core Board / Gameplan
+Gameplan itself is fairly straightforward. Standard principles of fast 8; preserving as much health and econ until level 8, donkey roll at 8 until you hit your 2 star Braum and Liss. Depending on your level 8 rolldown, if you hit an Ornn, always slot him in for the 8th spot -- Ornn from a level 8 rolldown is your win condition for the comp. Otherwise, most of the time you would slot in a Taric or Wukong depending on who you hit at 8, then go 9 after stabilising your board to add Zilean/Ornn.
+
+Image note: Example of level 9 board
+
+Early game, I only grab invoker/defender units and prioritise building up econ. I prioritise unlocking Orianna and LeBlanc if the spot allows, if you can't unlock LB, I usually use Anivia as an item holder. Piltover module should always be cogs/shield. I also rarely press levels in Stage 2 unless I know I'm going to hard winstreak, as tear priority matters a lot for this comp, and early game invoker/defender combo is surprisingly good at preserving some HP without leveling.
+
+Itemisation
+I experimented a lot with itemisation for Liss. JG/double nashors indeed deals a lot of dmg but lacks utility and consumes 2 belts which you need for tank items to unlock Voli. Also, Liss's traits don't provide innate AP, so she prioritises AP stacking via items and this is a stalling comp with long fights meaning she usually gets full benefit from archangels. She has a built in ludens as well so any excess damage on target is in fact favourable. Second would be any mana gen item.
+
+Third item -- fights are long, and you'll notice Liss often does 15-20k in one fight with her overkill dmg, so you get a lot of value from gunblade. Alternatively, void is always a good option if you can't build gunblade.
+
+Shred/anti-heal duties go to tanks (i.e. sunfire + ionic spark). These items on Braum 2 with 5 Frel will unlock Voli for you. If you have excess tank items, move utility items to another tank and slap pure tank/mana tank items for Braum. Liss with gunblade will keep him alive for a long time.
+
+Voli then gets the remaining leftover items, prioritising mana items if he is still a 1 star, so he can consistently get his 5th cast.
+
+Augments
+General principles apply here; be flexible with augments and take a good mix of econ and combat depending on your spot, but Seraphim's Staff and Reinforcements/Epic Rolldown are auto-picks for me.
+
+Conclusion
+There are definitely more nuances and edge cases I could go into, but this guide is already getting a bit long for what is ultimately a fairly simple comp, so I'll stop here. I know this is a pretty late guide given it is the last patch of the set, but hopefully it still helps anyone trying to squeeze in a last-minute climb. Braum/Liss is not a secret comp, but I do think it is a very reliable line for climbing once you get comfortable with it.
+
+If people have questions or want me to go into specific spots in more detail, I'm happy to discuss.
+
+Comments / Discussion
+
+[2026-04-02] Battlecookie15
+Hey! Sorry if this is a noob question, but I am trying to learn. :)
+If given the chance, would you ever recommend pivoting from this to the Ryze / Freljord comp? And if so, what do you think are requirements for that to be worth trying?
+
+[2026-04-02] DahliaCream reply
+Reposting since initial comment was removed for some reason:
+Hello! I never tried myself (requires too much brainpower!) but I guess you technically could if the conditions line up (i.e. you have excess mana/AP items, you already have Kennen unlocked + can find a Shen at 9; or in a really strong spot where you can sacrifice a round to unlock Galio for the demacia variation). But again, in the process of transition you risk of losing HP so I usually just go with the simple approach of slotting in another tank to stall fights even longer until level 10 where you really start to consider Zilean/Ryze as your third dmg source. In Frel Ryze comp, Liss usually takes on the debuff roll, but I honestly think Liss is quite overbudget for a non-unlockable 4 cost and functions just as well as Ryze as a main carry with significantly less cost -- she has innate 40% dmg amp, single target nuke and stun, decent aoe dmg, built in ludens, even more dmg amp with chilled enemies.
+
+To add, there is also a fundamental difference in how the two comps are played. Braum/Liss is a fast 8 and stabilise at 8 comp, so it actually usually takes quite a while before you can even think about going 9, and in a lot of games I would even rather skip 9 and try to go 10 if you were aiming for a top spot. Frel Ryze, on the other hand, is much more of a fast 9 comp where your whole gameplan is revolved around planning to spend your gold at 9. So even though the final boards can look similar, the way you navigate the game around them is actually pretty different.
+
+[2026-04-02] Battlecookie15 follow-up
+Thank you for elaborating!
+I've tried the comp a few times today and had some really good matches. Also managed to completely blunder 2 games because I had the most awful augment and item luck. Literally managed to get a single tear and only AD items apart from that. But I also had some fun in the other matches and managed to even place 1st twice.
+
+[2026-04-02] Skielark
+Thanks for the write up! I'm really enjoying this line for the consistency. How do you deal with people contesting you?
+
+[2026-04-02] DahliaCream reply
+Since the Liss/Sera version fell out of fashion, I rarely had much trouble hitting Braum 2 and Liss 2 for the past few patches since Ryze players were usually trying to go fast 9 instead of rolling at 8 (so you naturally have an advantage for hitting Liss) and no one else was really contesting this particular version of the board. It definitely felt a bit rougher when Liss/Sera was popular, but that was also a meta where everyone was donkey rolling on 8 trying to 3 star other 4 costs anyway, so the pool got evenly thinner across the board and could usually still hit eventually and stabilise. We'll see what happens this patch though, since Frel got buffed and might attract a bit more interest!
+
+[2026-04-02] Skielark follow-up
+Just hit masters thanks to this comp! This was my first set as well :)
+https://lolchess.gg/profile/oce/plasticluv-1656/set16
+
+[2026-04-02] Individual-Village24
+This comp carried me to Master. It's very rarely Top 1, usually you need to 3 star your 4 cost, but a lot of things need to go wrong to not Top 4. It's hardly ever contested and in the 16.7 patch it was pretty reasonable to hit your 2 star 4 costs. Early Orianna itemization often lead me to win-streak. Definitely my favourite comp of this set.
+
+[2026-04-02] Question from indexed discussion
+It seems like you don't need that many items in this comp as Voli items aren't mandatory. Would you prio combat over item augs?
+What is your lvl 8 board if you hit Ornn?
+If you hit Zilean on 8 do you just slot in Kobuko and pivot to 4 invoker variant?
+
+[2026-04-02] DahliaCream reply from indexed discussion
+Previously it when he was regionless it was just slot him in instead of Wu/Taric if you see a lucky Ornn at 8, acknowledging immediate board power was slightly weaker and voli often wouldn't get his 5th cast without bruiser; but really liss/braum 2 were usually all you need to winstreak stage 4. Now that Ornn is a Freljordian, if you do manage to hit Ornn at 8 I guess you could swap Anivia and Wukong/Taric out for Ornn and Kobuko (I'd often try to unlock him at level 7 by playing 4 invokers for one round and hold him in case he's in need i.e emblems that changes things around). So I'd say level 8 became even more stable this patch since +2 bruisers really gets Voli 1 to consistently get his 5th cast.
+
+I only take specific item augments with this comp, which is always focused around Liss i.e. seraphims, flowing tears, cry me a river, crown's will; and I avoid augments that provide random items/components as you do not want excess bows/gloves for this comp. Also, for combat augments, these are also usually centred around further empowering Liss' already overloaded kit i.e. I usually insta pick water/fire axioms, as essentially for the majority of the game until very late game, this comp is heavily a Liss solo carry comp.
+
+Regarding Voli items, if you had not chosen item augments, vary rarely you would have items for Voli at stage 4 (unless you had otherwise lots of unusable excess bows). So you would start accumulating Voli items in stage 5-6 with the help of Ornn! He really uses any item well apart from AP items, as his primary roll is to supplement Liss's damage anyway.
+
+[2026-04-02] Other indexed comments
+Huh, I just played this comp 3 times and got 2nd place in all of them.
+
+You can flex between this and the 4 invoker board with zilean kobuko voli which caps infinitely higher. If you high roll a zilean he prints 6-10 exp a turn.
+
+Eh
+
+I played some this set and it was too complicated for me, so when I saw this guide I just followed it to get to gold in 9 games. Even if nobody else is impressed, your guide helped me out a lot! I still don't know the set well but it was pretty fun.

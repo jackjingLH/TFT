@@ -14,6 +14,8 @@ const __dirname = path.dirname(__filename);
 const CONFIG = {
   headless: true,
   timeout: 60000,
+  selectorTimeout: 15000,
+  stableDelay: 3000,
   outputDir: './data',
 };
 
@@ -46,10 +48,18 @@ async function fetchGuide(url) {
 
     // 2. 访问页面
     console.log('📡 正在访问页面...');
-    await page.goto(url, { waitUntil: 'networkidle0', timeout: CONFIG.timeout });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: CONFIG.timeout });
+    await page.waitForFunction(
+      () => {
+        const hasButtons = document.querySelectorAll('button').length > 0;
+        const hasMetaDescription = Boolean(document.querySelector('meta[name="description"]'));
+        return hasButtons || hasMetaDescription;
+      },
+      { timeout: CONFIG.selectorTimeout }
+    ).catch(() => null);
     console.log('✅ 页面加载成功\n');
 
-    await delay(2000);
+    await delay(CONFIG.stableDelay);
 
     // 3. 提取阵容名称
     const compName = url.split('/').pop();

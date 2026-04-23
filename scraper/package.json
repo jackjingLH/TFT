@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "TFT Academy 阵容数据抓取工具",
   "type": "module",
-  "main": "fetchComps.js",
-  "scripts": {
-    "fetch": "node fetchComps.js",
-    "test": "node fetchComps.js"
-  },
   "keywords": [
     "tft",
     "scraper",

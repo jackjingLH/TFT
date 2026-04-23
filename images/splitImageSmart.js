@@ -335,6 +335,7 @@ async function splitImageByPoints(imagePath, cutPoints, outputDir, baseFilename)
 
   for (let i = 0; i < cutPoints.length; i++) {
     const point = cutPoints[i];
+    const isFirstSlice = (i === 0);
 
     // 生成输出文件名
     const outputFilename = `${baseFilename}_part${point.part}_of_${cutPoints.length}.png`;
@@ -358,10 +359,13 @@ async function splitImageByPoints(imagePath, cutPoints, outputDir, baseFilename)
     if (shouldPad && point.height < SPLIT_CONFIG.idealHeight) {
       const paddingHeight = SPLIT_CONFIG.idealHeight - point.height;
 
-      // 最后一张图片：顶部对齐，只在底部填充
+      // 第一张封面和最后一张：顶部对齐，只在底部填充
       // 其他图片：上下居中填充
-      if (isLastSlice) {
-        console.log(`  [填充] 第${point.part}张图片（最后一张）高度 ${point.height}px < ${SPLIT_CONFIG.idealHeight}px，底部填充 ${paddingHeight}px`);
+      if (isFirstSlice || isLastSlice) {
+        const sliceLabel = isFirstSlice
+          ? `第${point.part}张图片（第一张封面）`
+          : `第${point.part}张图片（最后一张）`;
+        console.log(`  [填充] ${sliceLabel}高度 ${point.height}px < ${SPLIT_CONFIG.idealHeight}px，底部填充 ${paddingHeight}px`);
 
         // 只从底部提取颜色
         const bottomColor = await extractBottomColor(imagePath, point.start, point.height, metadata.width);
