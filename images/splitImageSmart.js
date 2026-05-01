@@ -214,56 +214,52 @@ async function calculateSmartCutPoints(imagePath, width, height) {
   return cutPoints;
 }
 
+async function extractEdgeColor(imagePath, { left = 0, top, width, height }) {
+  const extractWidth = Math.max(1, Math.floor(width));
+  const extractHeight = Math.max(1, Math.floor(height));
+  const extractTop = Math.max(0, Math.floor(top));
+  const extractLeft = Math.max(0, Math.floor(left));
+
+  const region = await sharp(imagePath)
+    .extract({
+      left: extractLeft,
+      top: extractTop,
+      width: extractWidth,
+      height: extractHeight,
+    })
+    .raw()
+    .toBuffer();
+
+  let r = 0;
+  let g = 0;
+  let b = 0;
+  const pixels = region.length / 3;
+
+  for (let i = 0; i < region.length; i += 3) {
+    r += region[i];
+    g += region[i + 1];
+    b += region[i + 2];
+  }
+
+  return {
+    r: Math.round(r / pixels),
+    g: Math.round(g / pixels),
+    b: Math.round(b / pixels),
+    alpha: 1
+  };
+}
+
 /**
- * 从图片顶部提取背景颜色（避开文字区域）
- * @param {number} sampleOffset - 向内偏移量，跳过边缘文字区域
+ * 从图片顶部提取背景颜色（贴近切片边缘）
  */
-async function extractTopColor(imagePath, extractTop, width, sampleOffset = 50) {
+async function extractTopColor(imagePath, extractTop, width) {
   try {
-    // 从顶部向内偏移，避开紧邻的文字
-    const sampleTop = extractTop + sampleOffset;
-    const sampleHeight = 50; // 采样50行，获取更稳定的平均值
-
-    const region = await sharp(imagePath)
-      .extract({
-        left: 0,
-        top: Math.floor(sampleTop),
-        width: Math.floor(width),
-        height: sampleHeight,
-      })
-      .raw()
-      .toBuffer();
-
-    // 收集所有像素的灰度值和颜色，用于过滤文字像素
-    const pixels = [];
-    for (let i = 0; i < region.length; i += 3) {
-      const r = region[i];
-      const g = region[i + 1];
-      const b = region[i + 2];
-      const gray = (r + g + b) / 3;
-      pixels.push({ r, g, b, gray });
-    }
-
-    // 按灰度值排序，取中间60%的像素（排除极亮的文字和极暗的异常点）
-    pixels.sort((a, b) => a.gray - b.gray);
-    const startIdx = Math.floor(pixels.length * 0.2);
-    const endIdx = Math.floor(pixels.length * 0.8);
-    const backgroundPixels = pixels.slice(startIdx, endIdx);
-
-    // 计算背景像素的平均颜色
-    let r = 0, g = 0, b = 0;
-    for (const pixel of backgroundPixels) {
-      r += pixel.r;
-      g += pixel.g;
-      b += pixel.b;
-    }
-
-    return {
-      r: Math.round(r / backgroundPixels.length),
-      g: Math.round(g / backgroundPixels.length),
-      b: Math.round(b / backgroundPixels.length),
-      alpha: 1
-    };
+    return await extractEdgeColor(imagePath, {
+      top: extractTop,
+      left: 0,
+      width,
+      height: 2,
+    });
   } catch (error) {
     console.log(`  ! 无法提取顶部颜色，使用默认值`);
     return { r: 30, g: 30, b: 30, alpha: 1 };
@@ -271,55 +267,19 @@ async function extractTopColor(imagePath, extractTop, width, sampleOffset = 50) 
 }
 
 /**
- * 从图片底部提取背景颜色（避开文字区域）
- * @param {number} sampleOffset - 向内偏移量，跳过边缘文字区域
+ * 从图片底部提取背景颜色（贴近切片边缘）
  */
-async function extractBottomColor(imagePath, extractTop, extractHeight, width, sampleOffset = 50) {
+async function extractBottomColor(imagePath, extractTop, extractHeight, width) {
   try {
-    // 从底部向内偏移，避开紧邻的文字
-    const sampleHeight = 50; // 采样50行
-    const sampleTop = extractTop + extractHeight - sampleOffset - sampleHeight;
+    const sampleHeight = Math.max(1, Math.min(2, extractHeight));
+    const sampleTop = Math.max(0, extractTop + extractHeight - sampleHeight);
 
-    const region = await sharp(imagePath)
-      .extract({
-        left: 0,
-        top: Math.floor(sampleTop),
-        width: Math.floor(width),
-        height: sampleHeight,
-      })
-      .raw()
-      .toBuffer();
-
-    // 收集所有像素的灰度值和颜色，用于过滤文字像素
-    const pixels = [];
-    for (let i = 0; i < region.length; i += 3) {
-      const r = region[i];
-      const g = region[i + 1];
-      const b = region[i + 2];
-      const gray = (r + g + b) / 3;
-      pixels.push({ r, g, b, gray });
-    }
-
-    // 按灰度值排序，取中间60%的像素（排除极亮的文字和极暗的异常点）
-    pixels.sort((a, b) => a.gray - b.gray);
-    const startIdx = Math.floor(pixels.length * 0.2);
-    const endIdx = Math.floor(pixels.length * 0.8);
-    const backgroundPixels = pixels.slice(startIdx, endIdx);
-
-    // 计算背景像素的平均颜色
-    let r = 0, g = 0, b = 0;
-    for (const pixel of backgroundPixels) {
-      r += pixel.r;
-      g += pixel.g;
-      b += pixel.b;
-    }
-
-    return {
-      r: Math.round(r / backgroundPixels.length),
-      g: Math.round(g / backgroundPixels.length),
-      b: Math.round(b / backgroundPixels.length),
-      alpha: 1
-    };
+    return await extractEdgeColor(imagePath, {
+      top: sampleTop,
+      left: 0,
+      width,
+      height: sampleHeight,
+    });
   } catch (error) {
     console.log(`  ! 无法提取底部颜色，使用默认值`);
     return { r: 30, g: 30, b: 30, alpha: 1 };

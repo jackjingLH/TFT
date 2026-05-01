@@ -13,8 +13,8 @@ const CONFIG = {
   // 图片尺寸
   width: 900,
 
-  // 背景颜色 - 深空蓝黑
-  backgroundColor: '#0B0E1A',
+  // 背景颜色 - 星云深紫
+  backgroundColor: '#18121F',
 
   // 一级标题背景图设置
   h1BackgroundImage: './bg.png',
@@ -32,187 +32,274 @@ const CONFIG = {
   imageQuality: 100,
 };
 
+const THEME = {
+  baseBg: '#18121F',
+  bodyBg: '#120F1F',
+  panel: '#231C39',
+  panelRaised: '#2D2550',
+  panelEdge: '#4B4996',
+  text: '#F4EEFF',
+  muted: '#D5CFF3',
+  title: '#FFF38A',
+  purpleLight: '#A589F2',
+  purpleDeep: '#4B4996',
+  auroraGreen: '#B1FF91',
+  accentPink: '#FF8E8E',
+  border: 'rgba(165, 137, 242, 0.34)',
+  borderSoft: 'rgba(244, 238, 255, 0.08)',
+  glow: 'rgba(165, 137, 242, 0.28)',
+  shadow: 'rgba(9, 8, 24, 0.46)',
+};
+
 // 生成CSS样式的函数（支持动态背景图路径）
 function generateCSS(h1BackgroundImagePath = '') {
   return `
-  /* ── 字体导入 ─────────────────────────────────────────────
-     Russo One:    粗犷有力，适合游戏标题
-     Chakra Petch: 技术感强，兼具可读性，适合游戏攻略正文
-  ─────────────────────────────────────────────────────────── */
   @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,400&family=Russo+One&display=swap');
 
-  /* ── 调色板 ──────────────────────────────────────────────
-     背景:     #0B0E1A  深空蓝黑
-     面板:     #111827  石板深面板
-     正文:     #CBD5E1  银蓝白（比纯白更护眼）
-     副文字:   #64748B  石板灰
-     金色:     #F59E0B  TFT金币主题
-     浅金:     #FBBF24
-     紫色:     #8B5CF6  次强调（数据/特殊词条）
-     浅紫:     #A78BFA
-     玫红:     #F43F5E  标签/警示
-     蓝色:     #60A5FA  链接/代码
-     边框:     rgba(255,255,255,0.06)
-  ─────────────────────────────────────────────────────────── */
+  :root {
+    --base-bg: ${THEME.baseBg};
+    --body-bg: ${THEME.bodyBg};
+    --panel: ${THEME.panel};
+    --panel-raised: ${THEME.panelRaised};
+    --panel-edge: ${THEME.panelEdge};
+    --text: ${THEME.text};
+    --muted: ${THEME.muted};
+    --title: ${THEME.title};
+    --purple-light: ${THEME.purpleLight};
+    --purple-deep: ${THEME.purpleDeep};
+    --aurora-green: ${THEME.auroraGreen};
+    --accent-pink: ${THEME.accentPink};
+    --border: ${THEME.border};
+    --border-soft: ${THEME.borderSoft};
+    --glow: ${THEME.glow};
+    --shadow: ${THEME.shadow};
+  }
 
-  /* 确保背景网格覆盖整个截图区域 */
   html {
-    background-color: #0B0E1A;
-    /* 折中点阵：2px点 + 0.08不透明度 + 26px间距 = 微妙但可见 */
-    background-image: radial-gradient(circle, rgba(255,255,255,0.08) 2px, transparent 2px);
-    background-size: 26px 26px;
+    min-height: 100%;
+    background-color: var(--base-bg);
+    background-image:
+      radial-gradient(circle at top, rgba(139, 92, 246, 0.22) 0%, rgba(139, 92, 246, 0.08) 30%, transparent 60%),
+      linear-gradient(180deg, #140B22 0%, #12091F 42%, #100817 100%),
+      radial-gradient(circle, rgba(255,255,255,0.08) 2px, transparent 2px);
+    background-size: auto, auto, 26px 26px;
+    background-repeat: no-repeat, no-repeat, repeat;
     background-attachment: fixed;
   }
 
   body {
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     font-family: ${CONFIG.fontFamily};
     font-size: ${CONFIG.fontSize};
     line-height: ${CONFIG.lineHeight};
-    /* 深空背景 + 点阵纹理（dot 1.5px / 28px 间距） */
-    background: transparent;
-    color: #CBD5E1;
+    background-color: transparent;
+    background-image:
+      linear-gradient(180deg,
+        rgba(167, 139, 250, 0.10) 0%,
+        rgba(91, 33, 182, 0.18) 24%,
+        rgba(18, 9, 31, 0.10) 62%,
+        rgba(18, 9, 31, 0) 100%
+      ),
+      linear-gradient(180deg,
+        rgba(18, 9, 31, 0) 0%,
+        rgba(18, 9, 31, 0.24) 76%,
+        rgba(16, 8, 23, 0.46) 100%
+      );
+    background-repeat: no-repeat, no-repeat;
+    color: var(--text);
     position: relative;
   }
 
-  /* 顶部装饰线: 金 → 紫 → 玫红 */
   body::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #F59E0B 0%, #8B5CF6 55%, #F43F5E 100%);
-    z-index: 10;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(255, 142, 142, 0.10) 0%, var(--accent-pink) 18%, var(--purple-light) 46%, var(--aurora-green) 74%, rgba(177, 255, 145, 0.10) 100%);
+    box-shadow: 0 0 18px rgba(165, 137, 242, 0.30);
+    z-index: 12;
   }
 
-  /* ── 一级标题容器 ─────────────────────────────────────── */
   .h1-container {
     margin: 0;
     padding: 80px 48px 72px 48px;
     position: relative;
+    overflow: hidden;
 
     ${h1BackgroundImagePath ? `
     background-image:
       linear-gradient(160deg,
-        rgba(11, 14, 26, 0.90) 0%,
-        rgba(11, 14, 26, 0.76) 40%,
-        rgba(11, 14, 26, 0.86) 100%
+        rgba(18, 15, 31, 0.76) 0%,
+        rgba(24, 18, 31, 0.42) 34%,
+        rgba(75, 73, 150, 0.24) 62%,
+        rgba(18, 15, 31, 0.72) 100%
       ),
       url('${h1BackgroundImagePath}');
     background-size: cover, cover;
-    background-position: center, center;
+    background-position: center, center 28%;
     background-repeat: no-repeat, no-repeat;
     ` : `
-    background: linear-gradient(160deg,
-      rgba(139, 92, 246, 0.08) 0%,
-      rgba(11, 14, 26, 1) 40%,
-      rgba(245, 158, 11, 0.05) 100%
-    );
+    background:
+      radial-gradient(circle at 24% 10%, rgba(165, 137, 242, 0.46), transparent 34%),
+      radial-gradient(circle at 82% 20%, rgba(255, 142, 142, 0.18), transparent 26%),
+      radial-gradient(circle at 78% 74%, rgba(177, 255, 145, 0.10), transparent 18%),
+      linear-gradient(160deg,
+        rgba(24, 18, 31, 1) 0%,
+        rgba(18, 15, 31, 1) 44%,
+        rgba(75, 73, 150, 0.62) 100%
+      );
     `}
 
-    border-bottom: 1px solid rgba(245, 158, 11, 0.18);
+    border-bottom: 1px solid var(--border);
+    box-shadow:
+      inset 0 -28px 50px rgba(9, 8, 24, 0.34),
+      0 10px 36px rgba(9, 8, 24, 0.22);
   }
 
-  /* ── 标签 ─────────────────────────────────────────────── */
+  .h1-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(12, 10, 27, 0.32), transparent 36%, transparent 64%, rgba(12, 10, 27, 0.28)),
+      radial-gradient(circle at 18% 22%, rgba(165, 137, 242, 0.18), transparent 22%),
+      radial-gradient(circle at 86% 30%, rgba(255, 142, 142, 0.16), transparent 14%),
+      radial-gradient(circle at 78% 78%, rgba(177, 255, 145, 0.10), transparent 12%);
+    pointer-events: none;
+  }
+
+  .h1-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 14% 16%, rgba(255, 142, 142, 0.92) 0 2px, transparent 3px),
+      radial-gradient(circle at 27% 28%, rgba(255, 142, 142, 0.72) 0 3px, transparent 4px),
+      radial-gradient(circle at 83% 24%, rgba(177, 255, 145, 0.82) 0 3px, transparent 4px),
+      radial-gradient(circle at 90% 18%, rgba(255, 142, 142, 0.72) 0 2px, transparent 3px),
+      linear-gradient(90deg, transparent 0%, rgba(165, 137, 242, 0.18) 18%, rgba(255, 142, 142, 0.24) 50%, rgba(177, 255, 145, 0.18) 82%, transparent 100%);
+    pointer-events: none;
+    opacity: 0.92;
+  }
+
+  .h1-container > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin: 0 0 24px 0;
+    gap: 14px;
+    margin: 0 0 26px 0;
     align-items: center;
   }
 
   .tag {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Russo One', ${CONFIG.fontFamily};
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 900;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.8px;
     text-transform: uppercase;
-    color: #fff;
+    color: #FFE8F6;
     background: linear-gradient(135deg,
-      rgba(244, 63, 94, 0.85) 0%,
-      rgba(220, 38, 38, 0.85) 100%
+      rgba(251, 113, 190, 0.96) 0%,
+      rgba(236, 72, 153, 0.94) 52%,
+      rgba(219, 39, 119, 0.92) 100%
     );
-    padding: 4px 16px;
-    border-radius: 4px;
-    border: 1px solid rgba(244, 63, 94, 0.35);
-    box-shadow: 0 2px 10px rgba(244, 63, 94, 0.2);
+    padding: 7px 20px 8px;
+    border: 1px solid rgba(251, 113, 190, 0.5);
+    border-radius: 999px;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+      0 6px 18px rgba(236, 72, 153, 0.28);
   }
 
-  /* ── 一级标题 ─────────────────────────────────────────── */
   h1 {
     font-family: 'Russo One', ${CONFIG.fontFamily};
-    font-size: 108px;
+    font-size: 106px;
     font-weight: 900;
     margin: 0;
     padding: 0;
-    color: #FFFFFF;
+    color: var(--title);
     text-align: left;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
+    letter-spacing: -0.8px;
+    line-height: 1.14;
     text-shadow:
-      0 2px 24px rgba(245, 158, 11, 0.18),
-      0 0 60px rgba(139, 92, 246, 0.08);
+      0 2px 0 rgba(20, 18, 55, 0.56),
+      0 10px 28px rgba(20, 18, 55, 0.48),
+      0 0 26px rgba(165, 137, 242, 0.18);
   }
 
-  /* ── 二级标题 — 章节分隔（TODO: human 实现视觉效果） ─── */
-  /* TODO(human): 实现 h2 的视觉样式 —— 请看 Learn by Doing */
   h2 {
     font-family: 'Russo One', ${CONFIG.fontFamily};
     font-size: 36px;
     font-weight: 900;
-    margin: 32px 0 16px 0;
-    padding: 14px 40px 14px 20px;
-    color: #FBBF24;
-    background: linear-gradient(90deg,
-      rgba(245, 158, 11, 0.10) 0%,
-      rgba(245, 158, 11, 0.03) 60%,
-      transparent 100%
-    );
-    border-left: 4px solid #F59E0B;
-    border-radius: 0 6px 6px 0;
+    margin: 36px 40px 18px 40px;
+    padding: 16px 32px 16px 22px;
+    color: var(--text);
+    background:
+      linear-gradient(180deg, rgba(75, 73, 150, 0.60) 0%, rgba(35, 28, 57, 0.94) 100%);
+    border-left: 6px solid var(--purple-light);
+    border-top: 1px solid rgba(244, 238, 255, 0.08);
+    border-bottom: 1px solid rgba(165, 137, 242, 0.42);
+    border-right: 1px solid rgba(165, 137, 242, 0.18);
+    border-radius: 0 10px 10px 0;
     position: relative;
+    box-shadow:
+      inset 0 1px 0 rgba(244, 238, 255, 0.08),
+      0 10px 24px rgba(9, 8, 24, 0.24);
   }
 
-  /* ── 三级标题 — 菱形 marker ──────────────────────────── */
+  h2::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 52px;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 142, 142, 0.20) 100%);
+    clip-path: polygon(38% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
   h3 {
     font-family: '"Chakra Petch"', ${CONFIG.fontFamily};
     font-size: 29px;
     font-weight: 700;
-    margin: 20px 0 10px 0;
+    margin: 22px 0 12px 0;
     padding: 4px 40px 4px 48px;
-    color: #CBD5E1;
+    color: var(--text);
     position: relative;
   }
 
-  /* 菱形 marker */
   h3::before {
     content: '◆';
     position: absolute;
     left: 26px;
-    color: rgba(245, 158, 11, 0.5);
+    color: rgba(165, 137, 242, 0.72);
     font-size: 13px;
     top: 50%;
     transform: translateY(-50%);
   }
 
-  /* ── 段落 ─────────────────────────────────────────────── */
   p {
     margin: 12px 0;
     padding: 0 40px;
-    color: #CBD5E1;
+    color: var(--text);
   }
 
-  /* ── 列表 ─────────────────────────────────────────────── */
   ul, ol {
     margin: 12px 0;
     padding-left: 72px;
     padding-right: 40px;
-    color: #CBD5E1;
+    color: var(--text);
   }
 
   li {
@@ -220,7 +307,6 @@ function generateCSS(h1BackgroundImagePath = '') {
     line-height: 1.9;
   }
 
-  /* ── ul — 金色菱形 marker（inline-block 垂直居中） ───── */
   ul {
     list-style: none;
   }
@@ -230,20 +316,19 @@ function generateCSS(h1BackgroundImagePath = '') {
     display: inline-block;
     width: 36px;
     margin-left: -44px;
-    color: #F59E0B;
-    font-size: 20px;
+    color: var(--accent-pink);
+    font-size: 18px;
     text-align: center;
     vertical-align: middle;
+    text-shadow: 0 0 10px rgba(255, 142, 142, 0.18);
   }
 
-  /* 嵌套 ul — 空心菱形，视觉减弱表达层级 */
   ul ul li::before {
     content: '◇';
-    color: rgba(245, 158, 11, 0.5);
-    font-size: 16px;
+    color: rgba(165, 137, 242, 0.56);
+    font-size: 15px;
   }
 
-  /* ── ol — 金色圆形数字徽章（inline-block 垂直居中） ─── */
   ol {
     list-style: none;
     counter-reset: ol-counter;
@@ -260,150 +345,152 @@ function generateCSS(h1BackgroundImagePath = '') {
     height: 36px;
     margin-left: -50px;
     margin-right: 14px;
-    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
-    color: #0B0E1A;
+    background: linear-gradient(180deg, rgba(165, 137, 242, 0.96) 0%, rgba(75, 73, 150, 0.96) 100%);
+    color: var(--base-bg);
     font-family: 'Russo One', ${CONFIG.fontFamily};
     font-size: 18px;
     font-weight: 900;
     text-align: center;
     line-height: 36px;
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+    box-shadow:
+      inset 0 1px 0 rgba(244, 238, 255, 0.28),
+      0 4px 12px rgba(9, 8, 24, 0.24);
     vertical-align: middle;
   }
 
-  /* ── 粗体 — 金色（TFT 强调词、英雄名、技能名） ────────── */
   strong {
-    color: #FBBF24;
+    color: var(--aurora-green);
     font-weight: 700;
+    text-shadow: 0 0 10px rgba(177, 255, 145, 0.16);
   }
 
-  /* ── 下划线 — 紫色波浪线（保持原文字颜色，与金色加粗形成对比） ─── */
   u {
-    color: inherit;  /* 保持原文字颜色 #CBD5E1 */
-    font-weight: 600;  /* 略微加粗以突出 */
-    text-decoration: underline wavy;
-    text-decoration-color: #8B5CF6;  /* 紫色下划线，符合TFT主题 */
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(165, 137, 242, 0.88);
     text-underline-offset: 5px;
     text-decoration-thickness: 2px;
   }
 
-  /* ── 斜体 — 紫色（特殊词条、buff 名、说明文字） ──────── */
   em {
-    color: #A78BFA;
+    color: var(--accent-pink);
     font-style: italic;
   }
 
-  /* ── 行内代码 ─────────────────────────────────────────── */
   code {
-    background: rgba(30, 41, 59, 0.8);
-    color: #7DD3FC;
+    background: rgba(35, 28, 57, 0.95);
+    color: var(--title);
     padding: 2px 8px;
     border-radius: 4px;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 0.85em;
-    border: 1px solid rgba(125, 211, 252, 0.15);
+    border: 1px solid rgba(165, 137, 242, 0.22);
   }
 
-  /* ── 代码块 — 顶部紫色线 ────────────────────────────── */
   pre {
-    background: #0D1117;
+    background: linear-gradient(180deg, rgba(35, 28, 57, 0.98) 0%, rgba(24, 18, 31, 0.98) 100%);
     margin: 16px 40px;
     padding: 20px 24px;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow-x: auto;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-top: 2px solid #8B5CF6;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(165, 137, 242, 0.20);
+    border-top: 2px solid var(--purple-light);
+    box-shadow: 0 8px 24px rgba(9, 8, 24, 0.30);
   }
 
   pre code {
     background: transparent;
     padding: 0;
-    color: #E2E8F0;
+    color: var(--text);
     border: none;
     font-size: ${CONFIG.fontSize};
   }
 
-  /* ── 引用块 — TFT风格提示卡（顶部紫色边框，避免与h2左边框重复） ──────────── */
   blockquote {
     margin: 20px 40px;
-    padding: 28px 32px 28px 80px;
+    padding: 24px 30px 24px 86px;
     position: relative;
-    background: linear-gradient(135deg,
-      rgba(139, 92, 246, 0.10) 0%,
-      rgba(245, 158, 11, 0.06) 100%
-    );
-    /* 顶部紫色粗边框 + 全边框 + 圆角 */
-    border: 1px solid rgba(139, 92, 246, 0.30);
-    border-top: 3px solid #8B5CF6;
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.15);
+    background: linear-gradient(180deg, rgba(53, 43, 86, 0.96) 0%, rgba(28, 23, 52, 0.96) 100%);
+    border: 1px solid rgba(165, 137, 242, 0.30);
+    border-left: 5px solid var(--accent-pink);
+    border-radius: 12px;
+    box-shadow:
+      inset 0 1px 0 rgba(244, 238, 255, 0.06),
+      0 10px 24px rgba(9, 8, 24, 0.24);
   }
 
-  /* 左侧紫色灯泡图标 */
   blockquote::before {
-    content: '💡';
+    content: '!';
     position: absolute;
     left: 28px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 36px;
-    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(255, 142, 142, 0.98) 0%, rgba(165, 137, 242, 0.98) 100%);
+    color: var(--base-bg);
+    font-family: 'Russo One', ${CONFIG.fontFamily};
+    font-size: 24px;
+    line-height: 34px;
+    text-align: center;
+    box-shadow: 0 0 14px rgba(255, 142, 142, 0.18);
   }
 
   blockquote p {
     margin: 0;
     padding: 0;
-    color: #E2E8F0;
+    color: var(--text);
     font-style: normal;
     font-weight: 500;
   }
 
-  /* ── 链接 ─────────────────────────────────────────────── */
   a {
-    color: #60A5FA;
+    color: var(--purple-light);
     text-decoration: none;
-    border-bottom: 1px solid rgba(96, 165, 250, 0.25);
+    border-bottom: 1px solid rgba(165, 137, 242, 0.30);
   }
 
-  /* ── 分割线 ───────────────────────────────────────────── */
   hr {
     border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid var(--border-soft);
     margin: 24px 40px;
   }
 
-  /* ── 图片 ─────────────────────────────────────────────── */
   img {
-    max-width: calc(100% - 80px);
+    max-width: 100%;
     height: auto;
     display: block;
     margin: 20px 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 1px solid rgba(165, 137, 242, 0.16);
+    box-shadow: 0 8px 28px rgba(9, 8, 24, 0.38);
   }
 
-  /* Emoji 支持 */
+  p > img:only-child {
+    margin: 20px 0;
+  }
+
   .emoji {
     font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
   }
 
-  /* ── 表格 — 紫色表头（与金色 h2 形成层级区分） ──────── */
   table {
     width: calc(100% - 80px);
     margin: 20px 40px;
     border-collapse: collapse;
-    background: #111827;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(31, 24, 52, 0.98) 0%, rgba(24, 18, 31, 0.98) 100%);
+    border: 1px solid rgba(165, 137, 242, 0.18);
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 22px rgba(9, 8, 24, 0.24);
   }
 
   thead {
-    background: rgba(139, 92, 246, 0.12);
-    border-bottom: 2px solid rgba(139, 92, 246, 0.45);
+    background: linear-gradient(180deg, rgba(90, 84, 165, 0.92) 0%, rgba(75, 73, 150, 0.98) 100%);
+    border-bottom: 2px solid rgba(255, 142, 142, 0.32);
   }
 
   th {
@@ -411,15 +498,15 @@ function generateCSS(h1BackgroundImagePath = '') {
     text-align: left;
     font-weight: 700;
     font-family: 'Russo One', ${CONFIG.fontFamily};
-    color: #A78BFA;
+    color: var(--title);
     font-size: 24px;
     letter-spacing: 0.5px;
-    border-bottom: 2px solid rgba(139, 92, 246, 0.45);
+    border-bottom: 2px solid rgba(255, 142, 142, 0.24);
   }
 
   td {
     padding: 12px 18px;
-    color: #CBD5E1;
+    color: var(--text);
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     font-size: 23px;
   }
@@ -429,21 +516,24 @@ function generateCSS(h1BackgroundImagePath = '') {
   }
 
   tbody tr:nth-child(even) {
-    background: rgba(255, 255, 255, 0.025);
+    background: rgba(165, 137, 242, 0.05);
   }
 
   table code {
     font-size: 21px;
   }
 
-  /* ── 封面图 ───────────────────────────────────────────── */
   .cover-image {
     max-width: 100%;
     height: auto;
     display: block;
     margin: 28px 0 0 0;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 0;
+    border: 1px solid rgba(165, 137, 242, 0.20);
+    box-shadow:
+      inset 0 1px 0 rgba(244, 238, 255, 0.06),
+      0 12px 28px rgba(9, 8, 24, 0.30);
   }
 `;
 }
@@ -684,4 +774,4 @@ if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, '/')}`) {
     });
 }
 
-export { convertMdToImage, CONFIG };
+export { convertMdToImage, CONFIG, generateCSS };
